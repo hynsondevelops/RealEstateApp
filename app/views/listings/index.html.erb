@@ -1,0 +1,25 @@
+<div id="map"></div>
+
+<%= render :partial =>'popup', :locals => {:listing => @listings[0]} %>
+
+<script>
+      function initMap() {
+        var location = {lat: <%=@listings[0].latitude%>, lng: <%=@listings[0].longitude%>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: location
+
+        });
+        <% @listings.each do |listing| %>
+        	var location = {lat: <%=listing.latitude%>, lng: <%=listing.longitude%>};
+	        var marker = new google.maps.Marker({
+	          position: location,
+	          map: map
+	        });
+        <% end %>
+      }
+</script>
+<script async defer 
+
+src="https://maps.googleapis.com/maps/api/js?key=<%=GOOGLE_MAPS_API_KEY%>&callback=initMap">
+</script>
