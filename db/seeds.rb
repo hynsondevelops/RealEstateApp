@@ -18,6 +18,13 @@ csv.each do |row|
 	stateAbbreviationHash[row[1]] = idCounter
 end
 
+csv_file = File.read('cities.csv')
+csv = CSV.parse(csv_file, :headers => true)
+csv.each do |row|
+	if (stateAbbreviationHash[row[1]] != nil)
+		City.create!(name: row[0], state_id: stateAbbreviationHash[row[1]])
+	end
+end
 
 csv_file = File.read('us_postal_codes.csv')
 csv = CSV.parse(csv_file, :headers => true)
