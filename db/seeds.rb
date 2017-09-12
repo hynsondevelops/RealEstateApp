@@ -13,16 +13,22 @@ csv = CSV.parse(csv_file, :headers => true)
 stateAbbreviationHash = Hash.new
 idCounter = 0
 csv.each do |row|
-	State.create!(name: row[0], abbreviation: row[1])
-	idCounter += 1
-	stateAbbreviationHash[row[1]] = idCounter
+	if (idCounter < 15)
+		State.create!(name: row[0], abbreviation: row[1])
+		idCounter += 1
+		stateAbbreviationHash[row[1]] = idCounter
+	end
 end
 
 csv_file = File.read('cities.csv')
 csv = CSV.parse(csv_file, :headers => true)
+i = 0
 csv.each do |row|
-	if (stateAbbreviationHash[row[1]] != nil)
-		City.create!(name: row[0], state_id: stateAbbreviationHash[row[1]])
+	if (i < 15)
+		if (stateAbbreviationHash[row[1]] != nil)
+			City.create!(name: row[0], state_id: stateAbbreviationHash[row[1]])
+		end
+		i += 1
 	end
 end
 

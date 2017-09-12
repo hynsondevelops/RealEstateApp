@@ -22,7 +22,9 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 #Project Specific Gems
+#For latitude/longitude
 gem 'geocoder'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -41,6 +43,10 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  #RSpec for testing
+  gem 'rspec-rails'
+
 end
 
 group :development do
