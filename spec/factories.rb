@@ -20,6 +20,9 @@ FactoryGirl.define do
   factory :city do
     name "Washington"
     state
+    factory :city_with_listings, :parent => :city do |city|
+      listings { build_list :listing, 3 }
+    end
   end
 
   factory :zipcode do
@@ -29,4 +32,3 @@ FactoryGirl.define do
   end
 
 end
-
