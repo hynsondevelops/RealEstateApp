@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe City, :type => :model do
-	subject {build(:city_with_listings)}
+	subject {build(:city_with_associations)}
 
 	describe "Validations" do
 		it "is valid with valid attributes" do

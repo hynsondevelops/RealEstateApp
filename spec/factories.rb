@@ -15,12 +15,17 @@ FactoryGirl.define do
   factory :state do
     name "District of Columbia"
     abbreviation "DC"
+    factory :state_with_associations, :parent => :state do |state|
+      listings {build_list :listing, 3}
+      cities {build_list :city, 3}
+      zipcodes {build_list :zipcode, 3}
+    end
   end
 
   factory :city do
     name "Washington"
     state
-    factory :city_with_listings, :parent => :city do |city|
+    factory :city_with_associations, :parent => :city do |city|
       listings { build_list :listing, 3 }
     end
   end
@@ -29,6 +34,9 @@ FactoryGirl.define do
     name "DC"
     number "20006"
     state
+    factory :zipcode_with_associations, :parent => :zipcode do |zipcode|
+      listings { build_list :listing, 3 }
+    end
   end
 
 end
