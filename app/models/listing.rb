@@ -8,8 +8,8 @@ class Listing < ApplicationRecord
 	validates :state_id, presence: true
 	validates :city_id, presence: true
 	validates :zipcode_id, presence: true
-	validates :latitude, presence: true
-	validates :longitude, presence: true
+	#validates :latitude, presence: true
+	#validates :longitude, presence: true
 
 	belongs_to :state
 	belongs_to :city
