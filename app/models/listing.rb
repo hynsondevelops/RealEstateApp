@@ -23,7 +23,7 @@ class Listing < ApplicationRecord
 
 
 	def fullAddress	
-		[address, city.name, state.name, zipcode.number].join(', ')
+		[address, city.name, state.abbreviation, zipcode.number].join(', ')
 	end
 
 end
