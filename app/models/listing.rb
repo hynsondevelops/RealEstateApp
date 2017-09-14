@@ -20,6 +20,9 @@ class Listing < ApplicationRecord
 	before_validation :geocode, :if => lambda{|obj| obj.address_changed? && obj.city_id_changed? && obj.zipcode_id_changed? && obj.state_id_changed?}
 	after_validation :geocode, :if => lambda{|obj| obj.address_changed? && obj.city_id_changed? && obj.zipcode_id_changed? && obj.state_id_changed?}
 
+	attr_accessor :state_abbreviation
+	attr_accessor :city_name
+	attr_accessor :zipcode_number
 
 
 	def fullAddress	

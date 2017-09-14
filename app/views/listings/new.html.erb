@@ -1,0 +1,30 @@
+<%= form_for @listing do |f| %>
+  <%= f.label :address %>:
+  <%= f.text_field :address %><br />
+
+  <%= f.label :bedroom_count %>:
+  <%= f.text_field :bedroom_count %><br />
+
+  <%= f.label :bathroom_count %>:
+  <%= f.text_field :bathroom_count %><br />
+
+  <%= f.label :area_square_feet %>:
+  <%= f.number_field :area_square_feet %><br />
+
+  <%= f.label :description %>:
+  <%= f.text_field :description %><br />
+  
+  <%= f.label :price %>:
+  <%= f.text_field :price %><br />
+
+  <%= f.label :state_abbreviation %>:
+  <%= f.text_field :state_abbreviation %><br />
+
+  <%= f.label :city_name %>:
+  <%= f.text_field :city_name %><br />
+
+  <%= f.label :zipcode_number %>:
+  <%= f.text_field :zipcode_number %><br />
+
+  <%= f.submit %>
+<% end %>

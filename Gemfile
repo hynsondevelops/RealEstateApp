@@ -48,7 +48,10 @@ group :development, :test do
   gem 'rspec-rails'
   #for fixture replacement 
   gem 'factory_girl_rails'
-
+  #for controller tests
+  gem 'rails-controller-testing'
+  #for feature tests
+  gem 'capybara'
 
 end
 
