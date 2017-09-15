@@ -24,6 +24,9 @@ gem 'coffee-rails', '~> 4.2'
 #Project Specific Gems
 #For latitude/longitude
 gem 'geocoder'
+#For styling
+gem 'bootstrap', '~> 4.0.0.beta'
+
 
 
 # Use jquery as the JavaScript library

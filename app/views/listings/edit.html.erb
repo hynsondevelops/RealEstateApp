@@ -20,13 +20,13 @@
   <%= f.text_field :price %><br />
 
   <%= f.label :state_abbreviation %>:
-  <%= f.text_field :state_abbreviation %><br />
+  <%= f.text_field :state_abbreviation, :value => @listing.state.abbreviation %><br />
 
   <%= f.label :city_name %>:
-  <%= f.text_field :city_name %><br />
+  <%= f.text_field :city_name, :value => @listing.city.name %><br />
 
   <%= f.label :zipcode_number %>:
-  <%= f.text_field :zipcode_number %><br />
+  <%= f.text_field :zipcode_number, :value => @listing.zipcode.number %><br />
 
   <%= f.submit %>
 <% end %>

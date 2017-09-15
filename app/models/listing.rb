@@ -29,4 +29,20 @@ class Listing < ApplicationRecord
 		[address, city.name, state.abbreviation, zipcode.number].join(', ')
 	end
 
+	def textToID(params)
+		state = State.find_by(abbreviation: params[:listing][:state_abbreviation])
+		city = City.find_by(name: params[:listing][:city_name])
+		zipcode = Zipcode.find_by(number: params[:listing][:zipcode_number])
+		if (state != nil)
+			self.state_id = state.id
+		end
+		if (city != nil)
+			self.city_id = city.id
+		end
+		if (zipcode != nil)
+			self.zipcode_id = zipcode.id
+		end
+	end
+
+
 end

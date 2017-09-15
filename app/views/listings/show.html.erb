@@ -1,3 +1,7 @@
+<% if flash[:notice] != nil %>
+	    <div class="alert alert-success"> flash[:notice] </div>
+<% end %>
+
 <h3> Listing | <%=GOOGLE_MAPS_API_KEY%> </h3>
 
 <h3>For sale at: $<%=@listing.price%></h3>
@@ -20,7 +24,7 @@
 		!3d<%=@listing.latitude%>!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1504745131140" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 		<div id = "info">
 			<h1><%=@listing.address%></h1>
-			<h2><%=@listing.city.name%>, <%=@listing.state.name%> <%=@listing.zipcode.name%> </h2>
+			<h2><%=@listing.city.name%>, <%=@listing.state.name%> <%=@listing.zipcode.number%> </h2>
 			<h3><%=@listing.bedroom_count%> beds</h3>
 			<h3><%=@listing.bathroom_count%> baths</h3>
 			<h3><%=@listing.area_square_feet%> sqft</h3>

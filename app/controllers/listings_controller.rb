@@ -6,16 +6,39 @@ class ListingsController < ApplicationController
 
 	def create
 		@listing = Listing.new(listing_params)
-		@listing.state_id = State.find_by(abbreviation: params[:listing][:state_abbreviation]).id
-		@listing.city_id = City.find_by(name: params[:listing][:city_name]).id
-		@listing.zipcode_id = Zipcode.find_by(number: params[:listing][:zipcode_number]).id
-		@listing.save
-		print(@listing)
+		@listing.textToID(params)
+		if (@listing.save)
+			# Handle a successful save.
+			#@listing.send_activation_email
+			flash[:info] = "Listing created!"
+			redirect_to action: "show", id: @listing.id
+		else
+			render 'new'
+		end
 	end
 
 	def show
 		@listing = Listing.find(params[:id])
 	end
+
+	def edit
+		@listing = Listing.find(params[:id])
+	end
+
+	def update
+		@listing = Listing.find(params[:id])
+		@listing.textToID(params)
+		if @listing.update_attributes(listing_params)
+
+		      #successful update here
+		      flash[:success] = "Profile updated"
+		      redirect_to action: "show", id: @listing.id
+		else
+		      render 'edit'
+		end
+	end
+
+	def 
 
 	def index
 		@listings = Listing.all
