@@ -17,6 +17,13 @@ class ListingsController < ApplicationController
 		end
 	end
 
+	def index
+		@listings = Listing.all
+		print("HERE")
+		print(Listing.all)
+	end
+
+
 	def show
 		@listing = Listing.find(params[:id])
 	end
@@ -46,11 +53,11 @@ class ListingsController < ApplicationController
 		end
 	end
 
-	def 
-
-	def index
-		@listings = Listing.all
-	end
+	def destroy
+	    Listing.find(params[:id]).destroy
+	    flash[:success] = "User deleted"
+	    redirect_to '/listings'
+	  end
 
 	private
 

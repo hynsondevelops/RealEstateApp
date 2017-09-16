@@ -1,7 +1,5 @@
 <div id="map"></div>
 
-<%= render :partial =>'popup', :locals => {:listing => @listings[0]} %>
-
 <script>
       function initMap() {
         var location = {lat: <%=@listings[0].latitude%>, lng: <%=@listings[0].longitude%>};
@@ -11,11 +9,13 @@
 
         });
         <% @listings.each do |listing| %>
-        	var location = {lat: <%=listing.latitude%>, lng: <%=listing.longitude%>};
-	        var marker = new google.maps.Marker({
-	          position: location,
-	          map: map
-	        });
+          <% if (listing.latitude != nil && listing.longitude != nil) %>
+          	var location = {lat: <%=listing.latitude%>, lng: <%=listing.longitude%>};
+  	        var marker = new google.maps.Marker({
+  	          position: location,
+  	          map: map
+  	        });
+            <% end %>
         <% end %>
       }
 </script>

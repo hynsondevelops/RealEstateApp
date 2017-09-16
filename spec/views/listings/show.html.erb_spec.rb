@@ -1,1 +1,0 @@
-index.html.erb_spec.rb

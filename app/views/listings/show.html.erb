@@ -2,7 +2,6 @@
 	    <div class="alert alert-success"> flash[:notice] </div>
 <% end %>
 
-<h3> Listing | <%=GOOGLE_MAPS_API_KEY%> </h3>
 
 <h3>For sale at: $<%=@listing.price%></h3>
 
@@ -15,6 +14,7 @@
 
 <div id = "popup_background">
 	<div id = "popup">
+		<%= link_to "delete", @listing, method: :delete, data: { confirm: "You sure?" } %>
 		<div id ="popup_close">
 			<p id = "popup_x"> 
 				X
@@ -54,3 +54,4 @@
 
 src="https://maps.googleapis.com/maps/api/js?key=<%=GOOGLE_MAPS_API_KEY%>&callback=initMap">
 </script>
+
