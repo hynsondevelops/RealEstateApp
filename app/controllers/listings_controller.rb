@@ -6,7 +6,7 @@ class ListingsController < ApplicationController
 
 	def create
 		@listing = Listing.new(listing_params)
-		@listing.textToID(params)
+		@listing.textToID(params, 0)
 		if (@listing.save)
 			# Handle a successful save.
 			#@listing.send_activation_email
@@ -27,14 +27,22 @@ class ListingsController < ApplicationController
 
 	def update
 		@listing = Listing.find(params[:id])
-		@listing.textToID(params)
-		if @listing.update_attributes(listing_params)
-
-		      #successful update here
-		      flash[:success] = "Profile updated"
-		      redirect_to action: "show", id: @listing.id
+		if (@listing.textToID(params, 1))
+			if (@listing.update_attributes(listing_params))
+				#successful update here
+				flash[:success] = "Profile updated"
+				redirect_to action: "show", id: @listing.id
+			else
+				@listing.save
+				flash[:listing_errors_count] = @listing.errors.count
+				flash[:listing_errors_messages] = @listing.errors.full_messages 
+				redirect_to action: "edit", id: @listing.id
+			end
 		else
-		      render 'edit'
+			@listing.save
+			flash[:listing_errors_count] = @listing.errors.count
+			flash[:listing_errors_messages] = @listing.errors.full_messages 
+			redirect_to action: "edit", id: @listing.id
 		end
 	end
 

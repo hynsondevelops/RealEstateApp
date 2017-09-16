@@ -17,7 +17,7 @@ class Listing < ApplicationRecord
 
 
 	geocoded_by :fullAddress
-	before_validation :geocode, :if => lambda{|obj| obj.address_changed? && obj.city_id_changed? && obj.zipcode_id_changed? && obj.state_id_changed?}
+	#before_validation :geocode, :if => lambda{|obj| obj.address_changed? && obj.city_id_changed? && obj.zipcode_id_changed? && obj.state_id_changed?}
 	after_validation :geocode, :if => lambda{|obj| obj.address_changed? && obj.city_id_changed? && obj.zipcode_id_changed? && obj.state_id_changed?}
 
 	attr_accessor :state_abbreviation
@@ -26,22 +26,45 @@ class Listing < ApplicationRecord
 
 
 	def fullAddress	
+		if (address == nil || city == nil || state == nil || zipcode == nil)
+			return false
+		end
 		[address, city.name, state.abbreviation, zipcode.number].join(', ')
 	end
 
-	def textToID(params)
+	#updateOrCreate
+	#Create = 0
+	#Update = 1
+	def textToID(params, createOrUpdate)
 		state = State.find_by(abbreviation: params[:listing][:state_abbreviation])
 		city = City.find_by(name: params[:listing][:city_name])
 		zipcode = Zipcode.find_by(number: params[:listing][:zipcode_number])
+		valid = true
 		if (state != nil)
 			self.state_id = state.id
+		else
+			if (createOrUpdate)
+				self.state_id = nil
+			end
+			valid = false
 		end
 		if (city != nil)
 			self.city_id = city.id
+		else
+			if (createOrUpdate)
+				self.city_id = nil
+			end
+			valid = false
 		end
 		if (zipcode != nil)
 			self.zipcode_id = zipcode.id
+		else
+			if (createOrUpdate)
+				self.zipcode_id = nil
+			end
+			valid = false
 		end
+		return valid
 	end
 
 
