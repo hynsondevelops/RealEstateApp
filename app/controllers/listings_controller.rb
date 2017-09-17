@@ -57,7 +57,7 @@ class ListingsController < ApplicationController
 	    Listing.find(params[:id]).destroy
 	    flash[:success] = "User deleted"
 	    redirect_to '/listings'
-	  end
+	end
 
 	private
 

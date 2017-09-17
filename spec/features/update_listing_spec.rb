@@ -8,7 +8,7 @@ feature 'User creates a listing' do
 
     click_button 'Update Listing'
 
-    expect(page).to have_text("Virginia")  
+    expect(page).to have_text("VA")  
   end
 
   scenario 'give flash warnings of fields missing' do
