@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe 'listings/show.html.erb' do
   before(:all) do
-    @listing = build(:listing)
+    @listing = create(:listing)
   end
 
   it 'displays an address ' do
@@ -66,5 +66,22 @@ describe 'listings/show.html.erb' do
 
     expect(rendered).to include @listing.zipcode.number
   end
+
+  it 'displays google maps at proper latitude' do
+
+    render
+
+    expect(rendered).to include(@listing.latitude.to_s)
+
+  end
+
+  it 'displays google maps at proper longitude' do
+
+    render
+
+    expect(rendered).to include(@listing.longitude.to_s)
+
+  end
+
 end
 

@@ -1,22 +1,22 @@
-
-
 <div id = "popup_background">
 	<div id = "popup">
 		<div id ="popup_close">
 			<p id = "popup_x"> 
-				X
+				<p onclick="toggle_visibility('popup');">X</p>
 			</p>
+			<br>
 		</div>
-		<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d12345.27206851047!2d<%=listing.longitude %>
-		!3d<%=listing.latitude%>!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1504745131140" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-		<div id = "info">
-			<h1><%=listing.address%></h1>
-			<h2><%=listing.city.name%>, <%=listing.state.name%> <%=listing.zipcode.name%> </h2>
-			<h3><%=listing.bedroom_count%> beds</h3>
-			<h3><%=listing.bathroom_count%> baths</h3>
-			<h3><%=listing.area_square_feet%> sqft</h3>
-			<p> <%=listing.description%> </p>	
+		<div class="map"></div>
+		<div id = "listing_info">
+			<h1><%=@listing.address%></h1>
+			<h2><%=@listing.city.name%>, <%=@listing.state.abbreviation%> <%=@listing.zipcode.number%> </h2>
+			<h3><%=@listing.bedroom_count%> beds</h3>
+			<h3><%=@listing.bathroom_count%> baths</h3>
+			<h3><%=@listing.area_square_feet%> sqft</h3>
+			<p> <%=@listing.description%> </p>	
 		</div>
-		<h3>For sale at: $<%=listing.price%></h3>
+		<h3>For sale at: $<%=@listing.price%></h3>
 	</div>
+	<%= link_to "delete", @listing, method: :delete, data: { confirm: "You sure?" } %>
+
 </div>

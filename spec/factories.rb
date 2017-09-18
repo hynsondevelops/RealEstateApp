@@ -8,8 +8,7 @@ FactoryGirl.define do
     price 150000
     state
     city
-    zipcode
-    
+    zipcode 
   end
 
   factory :state do

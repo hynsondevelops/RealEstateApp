@@ -14,3 +14,66 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+/*
+function initMap(latitude, longitude) {
+	var uluru = {lat: latitude, lng: longitude};
+	var map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 10,
+		center: uluru
+	});
+	var marker = new google.maps.Marker({
+	position: uluru,
+	map: map
+	});
+}
+*/
+
+function toggle_visibility(id) {
+	var e = document.getElementById(id);
+	if(e.style.display == 'block')
+		e.style.display = 'none';
+	else
+		e.style.display = 'block';
+}
+
+
+
+function initMap() {
+    var listings
+    if (window.listings.length == null) //only 1 listing
+    {
+      listings = []
+      listings.push(window.listings)
+    }
+    else 
+    {
+      listings = window.listings
+    }
+    for (var i = 0; i < listings.length; i++)
+    {
+      var location = {lat: listings[i].latitude, lng: listings[i].longitude};
+      if (listings[i].latitude != null && listings[i].longitude != null)
+      {
+        if (i == 0)
+        {
+          var map = new google.maps.Map(document.getElementsByClassName('map')[0], {
+            zoom: 10,
+            center: location
+
+          });
+        }
+	      var marker = new google.maps.Marker({
+            position: location,
+	          map: map
+	      });
+      }
+    }
+  }
+
+
+function loadScript() {
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = "https://maps.googleapis.com/maps/api/js?key" + window.key + "=&sensor=false&callback=initMap";
+      document.body.appendChild(script);
+}

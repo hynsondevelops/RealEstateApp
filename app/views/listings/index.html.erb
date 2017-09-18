@@ -1,25 +1,11 @@
-<div id="map"></div>
+<div id="main_map" class="map"></div>
 
-<script>
-      function initMap() {
-        var location = {lat: <%=@listings[0].latitude%>, lng: <%=@listings[0].longitude%>};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: location
+<%= javascript_tag do %>
+  window.listings = <%= raw @listings.to_json %>;
+  window.onload = loadScript()
+  window.key = '<%=GOOGLE_MAPS_API_KEY%>'
+<% end %>
 
-        });
-        <% @listings.each do |listing| %>
-          <% if (listing.latitude != nil && listing.longitude != nil) %>
-          	var location = {lat: <%=listing.latitude%>, lng: <%=listing.longitude%>};
-  	        var marker = new google.maps.Marker({
-  	          position: location,
-  	          map: map
-  	        });
-            <% end %>
-        <% end %>
-      }
-</script>
-<script async defer 
-
-src="https://maps.googleapis.com/maps/api/js?key=<%=GOOGLE_MAPS_API_KEY%>&callback=initMap">
-</script>
+<div id ="search_filter">
+  <h3> Search filter </h3>
+</div>
