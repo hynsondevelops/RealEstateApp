@@ -11,37 +11,19 @@
 	<div class="col-sm-6">
 		<div id ="search_filter">
 		  <h3> Search filter </h3>
-		  <%= form_for @listing, url: { action: "search" } do |f| %>
+		  <%= form_tag(action: "search", controller: "listings") do |f| %>
 		    <%= render 'form_errors' %>
 
-		    <%= f.label :address %>:
-		    <%= f.text_field :address %><br />
-
-		    <%= f.label :bedroom_count %>:
-		    <%= f.text_field :bedroom_count %><br />
-
-		    <%= f.label :bathroom_count %>:
-		    <%= f.text_field :bathroom_count %><br />
-
-		    <%= f.label :area_square_feet %>:
-		    <%= f.text_field :area_square_feet %><br />
-
-		    <%= f.label :description %>:
-		    <%= f.text_field :description %><br />
+		    <%= label_tag :address %>:
+		    <%= text_field_tag :address %><br />
 		    
-		    <%= f.label :price %>:
-		    <%= f.text_field :price %><br />
+		    <%= label_tag :max_price %>:
+		    <%= text_field_tag :max_price %><br />
 
-		    <%= f.label :state_abbreviation %>:
-		    <%= f.text_field :state_abbreviation %><br />
+		    <%= label_tag :min_price %>:
+		    <%= text_field_tag :min_price %><br />
 
-		    <%= f.label :city_name %>:
-		    <%= f.text_field :city_name %><br />
-
-		    <%= f.label :zipcode_number %>:
-		    <%= f.text_field :zipcode_number %><br />
-
-		    <%= f.submit %>
+		    <%= submit_tag %>
 		  <% end %>
 		  <div id="search_results">
 		  	<% if @searchResults != nil %>
@@ -53,7 +35,8 @@
 		  				<h3><%=result.bedroom_count%> beds</h3>
 		  				<h3><%=result.bathroom_count%> baths</h3>
 		  				<h3><%=result.area_square_feet%> sqft</h3>
-		  				<p> <%=result.description%> </p>	
+		  				<p> <%=result.description%> </p>
+		  				<p> $<%=result.price%> </p>	
 		  			</div>
 		  		<% end %>
 		  	<% end %>

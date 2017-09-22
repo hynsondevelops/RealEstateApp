@@ -17,7 +17,7 @@ class ListingsController < ApplicationController
 		end
 	end
 	def search
-		@searchResults = Listing.search(params[:listing][:address], params[:listing][:bedroom_count])
+		@searchResults = Listing.finalSearch(params)
 		@listing = Listing.new
 		@listings = Listing.all
 		render 'index'
