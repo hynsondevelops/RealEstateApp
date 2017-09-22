@@ -16,13 +16,17 @@ class ListingsController < ApplicationController
 			render 'new'
 		end
 	end
-
-	def index
+	def search
+		@searchResults = Listing.search(params[:listing][:address], params[:listing][:bedroom_count])
+		@listing = Listing.new
 		@listings = Listing.all
-		print("HERE")
-		print(Listing.all)
+		render 'index'
 	end
 
+	def index
+		@listing = Listing.new
+		@listings = Listing.all
+	end
 
 	def show
 		@listing = Listing.find(params[:id])
@@ -64,5 +68,4 @@ class ListingsController < ApplicationController
 	  def listing_params
 	    params.require(:listing).permit(:address, :bedroom_count, :bathroom_count, :area_square_feet, :description, :price, :shipping_price, :state_abbreviation, :city_name, :zipcode_number)
 	  end
-
 end

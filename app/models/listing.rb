@@ -67,5 +67,17 @@ class Listing < ApplicationRecord
 		return valid
 	end
 
+	def self.search(search, bedroom_count)
+	  if search
+	    a = where("address LIKE ?", "%#{search}%")
+	    b = where("bedroom_count LIKE ?", "%#{bedroom_count}")
+	    return a + b
+	  else
+	    find(:all)
+	  end
+	end
+	
+
+
 
 end

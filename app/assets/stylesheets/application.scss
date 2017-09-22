@@ -46,7 +46,8 @@
 {
 	display: block;
 	float: left;
-    width: 50%;
+    width: 100%;
+    height: 100%;
 }
 
 .map
@@ -62,6 +63,8 @@
 	display: block-inline;
 	border: 2px solid black;
 	float: right;
+	width: 100%;
+	height: 100%;
 }
 
 #popup_close
@@ -102,4 +105,16 @@
 .navbar-header
 {
 	border: 2px solid black;
+}
+
+.row
+{
+	height: 100vh;
+	margin: 0;
+}
+
+.col-sm-6
+{
+	padding: 0;
+	height: 100%;
 }
