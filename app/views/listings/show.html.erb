@@ -10,6 +10,31 @@
 
 </div>
 
-<%= render partial: 'popup', locals: {:listing => @listing} %>
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+<div id="myModal" class="modal" role="dialog">
+  <div class="modal-dialog">
 
-<h3> Stuff after map </h3>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><%= @listing.address%></h4>
+      </div>
+      <div class="modal-body">
+        <h1><%=@listing.address%></h1>
+		<h2><%=@listing.city.name%>, <%=@listing.state.abbreviation%> <%=@listing.zipcode.number%> </h2>
+		<h3><%=@listing.bedroom_count%> beds</h3>
+		<h3><%=@listing.bathroom_count%> baths</h3>
+		<h3><%=@listing.area_square_feet%> sqft</h3>
+		<p> <%=@listing.description%> </p>
+		<p> $<%=@listing.price%> </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>	

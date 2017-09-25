@@ -15,7 +15,6 @@ class Listing < ApplicationRecord
 	belongs_to :city
 	belongs_to :zipcode
 
-
 	geocoded_by :fullAddress
 	#before_validation :geocode, :if => lambda{|obj| obj.address_changed? && obj.city_id_changed? && obj.zipcode_id_changed? && obj.state_id_changed?}
 	after_validation :geocode, :if => lambda{|obj| obj.address_changed? && obj.city_id_changed? && obj.zipcode_id_changed? && obj.state_id_changed?}
@@ -23,6 +22,10 @@ class Listing < ApplicationRecord
 	attr_accessor :state_abbreviation
 	attr_accessor :city_name
 	attr_accessor :zipcode_number
+
+	scope :rentals, -> {where(rent_or_sell: false)}
+	scope :for_sales, -> {where(rent_or_sell: true)}
+	
 
 
 	def fullAddress	

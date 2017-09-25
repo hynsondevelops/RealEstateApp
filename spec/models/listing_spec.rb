@@ -51,6 +51,11 @@ RSpec.describe Listing, :type => :model do
 			subject.zipcode_id = nil
 			expect(subject).to_not be_valid
 		end
+
+		it "is either a rental or for sale" do
+			subject.rent_or_sell = nil
+			expect(subject).to_not be_valid
+		end
 	end
 
 	describe "Associations" do
