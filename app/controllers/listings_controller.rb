@@ -17,7 +17,7 @@ class ListingsController < ApplicationController
 		end
 	end
 	def search
-		@searchResults = Listing.finalSearch(params)
+		@searchResults = Listing.finalSearch(search_params, 1)
 		@listing = Listing.new
 		@listings = Listing.all
 		render 'index'
@@ -68,4 +68,9 @@ class ListingsController < ApplicationController
 	  def listing_params
 	    params.require(:listing).permit(:address, :bedroom_count, :bathroom_count, :area_square_feet, :description, :price, :shipping_price, :state_abbreviation, :city_name, :zipcode_number)
 	  end
+
+	  def search_params
+	    params.permit(:address, :max_price, :min_price, :max_area_square_feet, :min_area_square_feet, :min_bedroom_count, :min_bathroom_count)
+	  end
+
 end

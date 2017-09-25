@@ -110,78 +110,113 @@ class Listing < ApplicationRecord
 	end
 
 
-
-	def self.finalSearch(search_params)
+	#and_or 1 for AND, 0 for OR
+	def self.finalSearch(search_params, and_or)
 		queriesString = ""
 		queriesObjects = []
 		firstQuery = true;
-		if (search_params[:address] != nil)
+		if (search_params[:address] != "")
 			tempQuery = addressSearch(search_params[:address])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
 				firstQuery = false
 			else
-				queriesString += " AND #{tempQuery[0]} "
+				if (and_or)
+					queriesString += " AND"
+				else
+					queriesString += " OR"
+				end
+				queriesString += " #{tempQuery[0]} "
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:max_price] != nil)
+		if (search_params[:max_price] != "")
 			tempQuery = maxPriceSearch(search_params[:max_price])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
 				firstQuery = false
 			else
-				queriesString += "AND #{tempQuery[0]} "
+				if (and_or)
+					queriesString += " AND"
+				else
+					queriesString += " OR"
+				end
+				queriesString += " #{tempQuery[0]} "
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:min_price] != nil)
+		if (search_params[:min_price] != "")
 			tempQuery = minPriceSearch(search_params[:min_price])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
 				firstQuery = false
 			else
-				queriesString += "AND #{tempQuery[0]} "
+				if (and_or)
+					queriesString += " AND"
+				else
+					queriesString += " OR"
+				end
+				queriesString += " #{tempQuery[0]} "
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:max_area_square_feet] != nil)
+		if (search_params[:max_area_square_feet] != "")
 			tempQuery = maxAreaSquareFeetSearch(search_params[:max_area_square_feet])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
 				firstQuery = false
 			else
-				queriesString += "AND #{tempQuery[0]} "
+				if (and_or)
+					queriesString += " AND"
+				else
+					queriesString += " OR"
+				end
+				queriesString += " #{tempQuery[0]} "
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:min_area_square_feet] != nil)
+		if (search_params[:min_area_square_feet] != "")
 			tempQuery = minAreaSquareFeetSearch(search_params[:min_area_square_feet])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
 				firstQuery = false
 			else
-				queriesString += "AND #{tempQuery[0]} "
+				if (and_or)
+					queriesString += " AND"
+				else
+					queriesString += " OR"
+				end
+				queriesString += " #{tempQuery[0]} "
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:min_bedroom_count] != nil)
+		if (search_params[:min_bedroom_count] != "")
 			tempQuery = minBedroomCountSearch(search_params[:min_bedroom_count])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
 				firstQuery = false
 			else
-				queriesString += "AND #{tempQuery[0]} "
+				if (and_or)
+					queriesString += " AND"
+				else
+					queriesString += " OR"
+				end
+				queriesString += " #{tempQuery[0]} "
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:min_bathroom_count] != nil)
+		if (search_params[:min_bathroom_count] != "")
 			tempQuery = minBathroomCountSearch(search_params[:min_bathroom_count])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
 				firstQuery = false
 			else
-				queriesString += "AND #{tempQuery[0]} "
+				if (and_or)
+					queriesString += " AND"
+				else
+					queriesString += " OR"
+				end
+				queriesString += " #{tempQuery[0]} "
 			end
 			queriesObjects.push(tempQuery[1])
 		end

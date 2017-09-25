@@ -12,10 +12,12 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-modal-bs3patch
+ *= require bootstrap-modal
  */
 
 @import "bootstrap";
-
+@import "bootstrap-modal";
 
 #popup_background
 {

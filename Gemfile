@@ -26,6 +26,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'geocoder'
 #For styling
 gem 'bootstrap', '~> 4.0.0.beta'
+#for modals
+gem 'bootstrap-modal-rails'
 
 
 

@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require bootstrap-modal
+//= require bootstrap-modalmanager
 /*
 function initMap(latitude, longitude) {
 	var uluru = {lat: latitude, lng: longitude};

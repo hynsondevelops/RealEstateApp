@@ -1,5 +1,5 @@
 <%= javascript_tag do %>
-  window.listings = <%= raw @listing.to_json %>;
+  window.listings = <%= raw listing.to_json %>;
   window.onload = loadScript(1)
   window.key = '<%=GOOGLE_MAPS_API_KEY%>'
 <% end %>
@@ -14,15 +14,15 @@
 		</div>
 		<div class="map"></div>
 		<div id = "listing_info">
-			<h1><%=@listing.address%></h1>
-			<h2><%=@listing.city.name%>, <%=@listing.state.abbreviation%> <%=@listing.zipcode.number%> </h2>
-			<h3><%=@listing.bedroom_count%> beds</h3>
-			<h3><%=@listing.bathroom_count%> baths</h3>
-			<h3><%=@listing.area_square_feet%> sqft</h3>
-			<p> <%=@listing.description%> </p>	
+			<h1><%=listing.address%></h1>
+			<h2><%=listing.city.name%>, <%=listing.state.abbreviation%> <%=listing.zipcode.number%> </h2>
+			<h3><%=listing.bedroom_count%> beds</h3>
+			<h3><%=listing.bathroom_count%> baths</h3>
+			<h3><%=listing.area_square_feet%> sqft</h3>
+			<p> <%=listing.description%> </p>	
 		</div>
-		<h3>For sale at: $<%=@listing.price%></h3>
+		<h3>For sale at: $<%=listing.price%></h3>
 	</div>
-	<%= link_to "delete", @listing, method: :delete, data: { confirm: "You sure?" } %>
+	<%= link_to "delete", listing, method: :delete, data: { confirm: "You sure?" } %>
 
 </div>
