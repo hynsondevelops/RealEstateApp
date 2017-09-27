@@ -10,7 +10,7 @@ class Listing < ApplicationRecord
 	validates :zipcode_id, presence: true
 	#validates :latitude, presence: true
 	#validates :longitude, presence: true
-
+	validates :rent_or_sell, inclusion: { in: [ true, false ] }
 	belongs_to :state
 	belongs_to :city
 	belongs_to :zipcode
@@ -25,7 +25,7 @@ class Listing < ApplicationRecord
 
 	scope :rentals, -> {where(rent_or_sell: false)}
 	scope :for_sales, -> {where(rent_or_sell: true)}
-	
+
 
 
 	def fullAddress	

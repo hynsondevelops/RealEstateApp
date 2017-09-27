@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe Listing, :type => :model do
 	subject {build(:listing)}
-
+	let(:search_params) {{:address => "", :max_price => "", :min_price => "", :min_bedroom_count => "", :min_bathroom_count => "", :max_area_square_feet => "", :min_area_square_feet => ""}}
 	describe "Validations" do
 		it "is valid with valid attributes" do
 			expect(subject).to be_valid
@@ -106,38 +106,39 @@ RSpec.describe Listing, :type => :model do
 	describe '#finalSearch' do
 		it "allows searching by address" do
 			subject.save
-			expect(Listing.finalSearch({:address => "1600"})[0].address).to eq("1600 Pennsylvania Ave NW")
+			search_params[:address] = "1600"
+			expect(Listing.finalSearch(search_params, 1)[0].address).to eq("1600 Pennsylvania Ave NW")
 		end 
 
 		it "allows searching by maximum price" do
 			subject.save
-			expect(Listing.finalSearch({:max_price => "200000"})[0].address).to eq("1600 Pennsylvania Ave NW")
-		end 
+			search_params[:max_price] = "1000000"
+			expect(Listing.finalSearch(search_params, 1)[0].address).to eq("1600 Pennsylvania Ave NW")		end 
 		
 		it "allows searching by minimum price" do
 			subject.save
-			expect(Listing.finalSearch({:min_price => "100"})[0].address).to eq("1600 Pennsylvania Ave NW")
-		end 
+			search_params[:min_price] = "0"
+			expect(Listing.finalSearch(search_params, 1)[0].address).to eq("1600 Pennsylvania Ave NW")		end 
 
 		it "allows searching by minimum bedroom_count" do
 			subject.save
-			expect(Listing.finalSearch({:min_bedroom_count => 1})[0].address).to eq("1600 Pennsylvania Ave NW")
-		end 
+			search_params[:min_bathroom_count] = "1"
+			expect(Listing.finalSearch(search_params, 1)[0].address).to eq("1600 Pennsylvania Ave NW")		end 
 
 		it "allows searching by minimum bathroom_count" do
 			subject.save
-			expect(Listing.finalSearch({:min_bathroom_count => 1})[0].address).to eq("1600 Pennsylvania Ave NW")
-		end 
+			search_params[:min_bathroom_count] = "1"
+			expect(Listing.finalSearch(search_params, 1)[0].address).to eq("1600 Pennsylvania Ave NW")		end 
 
 		it "allows searching by maximum area_square_feet" do
 			subject.save
-			expect(Listing.finalSearch({:max_area_square_feet => "3000"})[0].address).to eq("1600 Pennsylvania Ave NW")
-		end 
+			search_params[:max_area_square_feet] = "100000"
+			expect(Listing.finalSearch(search_params, 1)[0].address).to eq("1600 Pennsylvania Ave NW")		end 
 		
 		it "allows searching by minimum area_square_feet" do
 			subject.save
-			expect(Listing.finalSearch({:min_area_square_feet => "100"})[0].address).to eq("1600 Pennsylvania Ave NW")
-		end 
+			search_params[:min_area_square_feet] = "0"
+			expect(Listing.finalSearch(search_params, 1)[0].address).to eq("1600 Pennsylvania Ave NW")		end 
 
 	end
 

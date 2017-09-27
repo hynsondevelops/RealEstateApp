@@ -13,6 +13,7 @@ feature 'User creates a listing' do
     fill_in 'State abbreviation', with: 'MD'
     fill_in 'City name', with: 'Owings Mills'
     fill_in 'Zipcode number', with: "21117"
+    choose 'listing_rent_or_sell_true'
 
     click_button 'Create Listing'
 
@@ -31,6 +32,7 @@ feature 'User creates a listing' do
     fill_in 'State abbreviation', with: 'MD'
     fill_in 'City name', with: 'Owings Mills'
     fill_in 'Zipcode number', with: "0"
+    choose 'listing_rent_or_sell_false'
 
     click_button 'Create Listing'
 
@@ -49,6 +51,7 @@ feature 'User creates a listing' do
     fill_in 'State abbreviation', with: 'MD'
     fill_in 'City name', with: 'Owings Mills'
     fill_in 'Zipcode number', with: "0"
+    choose 'listing_rent_or_sell_false'
 
     click_button 'Create Listing'
 

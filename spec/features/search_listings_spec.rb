@@ -1,1 +1,0 @@
-search_listings_spec.rb

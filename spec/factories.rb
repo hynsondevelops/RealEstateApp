@@ -6,6 +6,7 @@ FactoryGirl.define do
     area_square_feet 2000
     description "This is boiler plate for the description of this listing."
     price 150000
+    rent_or_sell true
     state
     city
     zipcode 

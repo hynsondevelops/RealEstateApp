@@ -28,7 +28,8 @@ gem 'geocoder'
 gem 'bootstrap', '~> 4.0.0.beta'
 #for modals
 gem 'bootstrap-modal-rails'
-
+#for images
+gem "paperclip", "~> 5.0.0"
 
 
 # Use jquery as the JavaScript library

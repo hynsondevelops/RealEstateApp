@@ -28,6 +28,12 @@
   <%= f.label :zipcode_number %>:
   <%= f.text_field :zipcode_number %><br />
 
+
+  <%= f.radio_button(:rent_or_sell, false) %>
+  <%= f.label(:rent_or_sell, "Rental") %>
+  <%= f.radio_button(:rent_or_sell, true) %>
+  <%= f.label(:rent_or_sell, "Sale") %>
+
   <%= f.submit %>
 <% end %>
 <!-- Button trigger modal -->

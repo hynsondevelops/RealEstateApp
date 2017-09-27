@@ -6,9 +6,12 @@ feature 'User creates a listing' do
    
     fill_in 'State abbreviation', with: 'VA'
 
+    choose 'listing_rent_or_sell_true'
+
+
     click_button 'Update Listing'
 
-    expect(page).to have_text("VA")  
+    expect(page.html).to have_text("VA")  
   end
 
   scenario 'give flash warnings of fields missing' do
