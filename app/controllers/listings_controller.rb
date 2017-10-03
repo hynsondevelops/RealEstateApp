@@ -8,6 +8,12 @@ class ListingsController < ApplicationController
 		@listing = Listing.new(listing_params)
 		@listing.textToID(params, 0)
 		if (@listing.save)
+			if params[:images]
+			  #===== The magic is here ;)
+			  params[:images].each { |image|
+			    @listing.pictures.create(image: image)
+			  }
+			end
 			# Handle a successful save.
 			#@listing.send_activation_email
 			flash[:info] = "Listing created!"
@@ -30,6 +36,7 @@ class ListingsController < ApplicationController
 
 	def show
 		@listing = Listing.find(params[:id])
+		@following = Following.new
 	end
 
 	def edit
@@ -62,11 +69,13 @@ class ListingsController < ApplicationController
 	    flash[:success] = "User deleted"
 	    redirect_to '/listings'
 	end
+ 
 
 	private
 
 	  def listing_params
-	    params.require(:listing).permit(:address, :bedroom_count, :bathroom_count, :area_square_feet, :description, :price, :shipping_price, :state_abbreviation, :city_name, :zipcode_number, :rent_or_sell)
+	    params.require(:listing).permit(:address, :bedroom_count, :bathroom_count, :area_square_feet, :description, :price, :shipping_price, :state_abbreviation, :city_name, :zipcode_number, :rent_or_sell, :user_id)
+
 	  end
 
 	  def search_params

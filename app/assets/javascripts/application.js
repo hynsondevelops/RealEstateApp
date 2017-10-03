@@ -79,3 +79,13 @@ function loadScript() {
       script.src = "https://maps.googleapis.com/maps/api/js?key" + window.key + "=&sensor=false&callback=initMap";
       document.body.appendChild(script);
 }
+
+$.ajax({
+  url: $('.uploader').attr('action'),
+  contentType: false,
+  cache: false,
+  processData: false,
+  type: 'POST',
+  dataType: 'json',
+  data: data
+});

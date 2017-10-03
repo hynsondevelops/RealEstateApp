@@ -30,7 +30,8 @@ gem 'bootstrap', '~> 4.0.0.beta'
 gem 'bootstrap-modal-rails'
 #for images
 gem "paperclip", "~> 5.0.0"
-
+#devise
+gem 'devise'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -14,6 +14,7 @@ class Listing < ApplicationRecord
 	belongs_to :state
 	belongs_to :city
 	belongs_to :zipcode
+	belongs_to :lister, foreign_key: "user_id", class_name: "User"
 
 	geocoded_by :fullAddress
 	#before_validation :geocode, :if => lambda{|obj| obj.address_changed? && obj.city_id_changed? && obj.zipcode_id_changed? && obj.state_id_changed?}
@@ -26,6 +27,8 @@ class Listing < ApplicationRecord
 	scope :rentals, -> {where(rent_or_sell: false)}
 	scope :for_sales, -> {where(rent_or_sell: true)}
 
+	has_many :pictures, :dependent => :destroy
+	accepts_nested_attributes_for :pictures, :allow_destroy => true
 
 
 	def fullAddress	

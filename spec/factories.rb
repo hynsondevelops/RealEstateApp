@@ -1,4 +1,16 @@
 FactoryGirl.define do
+  factory :following do
+    
+  end
+  factory :user do
+    
+  end
+  factory :gallery do
+    
+  end
+  factory :picture do
+    
+  end
   factory :listing do
     address "1600 Pennsylvania Ave NW"
     bedroom_count "3"
