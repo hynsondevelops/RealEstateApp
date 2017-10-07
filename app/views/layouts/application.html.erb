@@ -22,7 +22,6 @@
     <div class="col-md-2">
       <div class="searchbar_input">
       <%= form_tag(action: "search", controller: "listings") do |f| %>
-        <%= render 'form_errors' %>
         <%= text_field_tag :address %>
       </div>
     </div>
@@ -70,6 +69,8 @@
     <% end %>
   </nav>
   <body>
-    <%= yield %>
+    <div class="page_content">
+      <%= yield %>
+    </div>
   </body>
 </html>

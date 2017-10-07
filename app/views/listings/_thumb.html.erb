@@ -1,4 +1,4 @@
-<div class="listing_thumb col-md-6">
+<div class="listing_thumb <%= sizing %>">
 	<%= link_to controller: "listings", action: "show", id: listing, :class => "listing_thumb_link" do %>
 		<% if listing.pictures[0] != nil %>
 		  <%= image_tag listing.pictures[0].image.url(:medium), :class => "listing_thumb_img" %>
@@ -7,12 +7,15 @@
 			<p> $<%=listing.price%> </p>
 			<p><%=listing.address%>, <%=listing.city.name%>, <%=listing.state.abbreviation%> <%=listing.zipcode.number%> </p> 
 			<p> <%=listing.bedroom_count%> beds / <%=listing.bathroom_count%> baths </p>
-			<%= form_for(@following, url: {controller: :followings, action: :create}) do |f| %>
-			      <%= f.hidden_field :user_id, :value => current_user.id %>
-			      <%= f.hidden_field :listing_id, :value => @listing.id %>
-			      <%= f.submit "Favorite" %>
-
+			<% end %>
+			<% if current_user != nil%>
+				<% if !current_user.followed?(listing) %>
+					<%= form_for(@following, url: {controller: :followings, action: :create}) do |f| %>
+					      <%= f.hidden_field :user_id, :value => current_user.id %>
+					      <%= f.hidden_field :listing_id, :value => listing.id %>
+					      <%= f.submit "Favorite" %>
+					<% end %>
+				<% end %>
 			<% end %>
 		</div>
-	<% end %>
 </div>

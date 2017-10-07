@@ -16,8 +16,6 @@
 		  <h3> Search filter </h3>
 		  <% @test = "search"%>
 		  <%= form_tag(action: @test, controller: "listings") do |f| %>
-		    <%= render 'form_errors' %>
-
 		    <%= label_tag :address %><br>
 		    <%= text_field_tag :address %>
 		    <p> Price </p>
@@ -45,9 +43,9 @@
 		  		<% @searchResults.each_with_index do |result, index| %>
 	  				<% if index % 2 == 0 %>
 	  					<div class="row search_results">
-	  						<%= render partial: "thumb", locals: {listing: result} %>
+	  						<%= render partial: "thumb", locals: {listing: result, sizing: "col-md-6" }%>
 	  				<% else %>
-	  					<%= render partial: "thumb", locals: {listing: result} %>
+	  					<%= render partial: "thumb", locals: {listing: result, sizing: "col-md-6"}%>
 	  					</div>
 	  				<%end%>
 	  			<% end %>
