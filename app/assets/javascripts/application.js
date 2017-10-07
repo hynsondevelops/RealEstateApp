@@ -14,8 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require popper
 //= require bootstrap-modal
 //= require bootstrap-modalmanager
+//= require bootstrap
+
+
 /*
 function initMap(latitude, longitude) {
 	var uluru = {lat: latitude, lng: longitude};
@@ -29,6 +33,10 @@ function initMap(latitude, longitude) {
 	});
 }
 */
+
+
+
+
 
 function toggle_visibility(id) {
 	var e = document.getElementById(id);

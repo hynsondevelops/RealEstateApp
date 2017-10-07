@@ -3,45 +3,7 @@
 <% end %>
 
 
-<h3>For sale at: $<%=@listing.price%></h3>
-
-
-<div id = "providedPhotos">
-
+<div class="row">
+  <%= render partial: "thumb", locals: {listing: @listing} %>
+  <%= render partial: "thumb", locals: {listing: @listing} %>
 </div>
-
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
-<div id="myModal" class="modal" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><%= @listing.address%></h4>
-      </div>
-      <div class="modal-body">
-        <h1><%=@listing.address%></h1>
-		<h2><%=@listing.city.name%>, <%=@listing.state.abbreviation%> <%=@listing.zipcode.number%> </h2>
-		<h3><%=@listing.bedroom_count%> beds</h3>
-		<h3><%=@listing.bathroom_count%> baths</h3>
-		<h3><%=@listing.area_square_feet%> sqft</h3>
-		<p> <%=@listing.description%> </p>
-		<p> $<%=@listing.price%> </p>
-    <% @listing.pictures.each do |pic| %>
-      <%= image_tag pic.image.url(:medium) %>
-    <% end %>
-    <%= form_for(@following, url: {controller: :followings, action: :create}) do |f| %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-      <%= f.hidden_field :listing_id, :value => @listing.id %>
-      <%= f.submit "Send Request" %>
-    <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>	

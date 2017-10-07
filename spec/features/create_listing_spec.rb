@@ -1,7 +1,16 @@
 require 'rails_helper'
+include Devise::Test
 
 feature 'User creates a listing' do
   scenario 'valid fields in form allows creation' do
+    user = FactoryGirl.create(:user)
+    
+    #user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
+    visit new_user_session_path
+    fill_in 'Email', with: 'email1@factory.com'
+    fill_in 'Password', with: 'foobar'
+
+    click_button 'Log in'
     visit new_listing_path
     
     fill_in 'Address', with: '2106 Harmony Woods Rd'
@@ -21,6 +30,14 @@ feature 'User creates a listing' do
   end
 
   scenario 'invalid fields in form prevents creation' do
+    user = FactoryGirl.create(:user)
+    
+    #user.confirm! # or set a confirmed_at inside the factory. Only necessary if you are using the "confirmable" module
+    visit new_user_session_path
+    fill_in 'Email', with: 'email1@factory.com'
+    fill_in 'Password', with: 'foobar'
+
+    click_button 'Log in'
     visit new_listing_path
 
     fill_in 'Address', with: '2106 Harmony Woods Rd'

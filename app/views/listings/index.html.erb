@@ -4,9 +4,8 @@
   window.key = '<%=GOOGLE_MAPS_API_KEY%>'
  
 <% end %>
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
+
+<%= link_to('Logout', destroy_user_session_path, method: :delete) %>
 
 <div class="row">
 	<div class="col-sm-6">
@@ -15,17 +14,17 @@
 	<div class="col-sm-6">
 		<div id ="search_filter">
 		  <h3> Search filter </h3>
-		  <%= form_tag(action: "search", controller: "listings") do |f| %>
+		  <% @test = "search"%>
+		  <%= form_tag(action: @test, controller: "listings") do |f| %>
 		    <%= render 'form_errors' %>
 
-		    <%= label_tag :address %>:
-		    <%= text_field_tag :address %><br />
-		    
-		    <%= label_tag :max_price %>:
-		    <%= text_field_tag :max_price %><br />
-
-		    <%= label_tag :min_price %>:
-		    <%= text_field_tag :min_price %><br />
+		    <%= label_tag :address %><br>
+		    <%= text_field_tag :address %>
+		    <p> Price </p>
+		    <%= label_tag :min %>:
+		    <%= text_field_tag :min_price, '', size: 8 %>
+		    <%= label_tag :max %>:
+		    <%= text_field_tag :max_price, '', size: 8 %><br />
 
 		    <%= label_tag :max_area_square_feet %>:
 		    <%= text_field_tag :max_area_square_feet %><br />
@@ -43,46 +42,18 @@
 		  <div id="search_results">
 		  	<% if @searchResults != nil %>
 		  		<%= @searchResults.length %>
-		  		<% @searchResults.each do |result| %>
-		  			<div id = "listing_info">
-		  				<p> <a onclick="toggle_visibility('popup');"> Click Here </p>
-		  				<h1><%=result.address%></h1>
-		  				<h2><%=result.city.name%>, <%=result.state.abbreviation%> <%=result.zipcode.number%> </h2>
-		  				<h3><%=result.bedroom_count%> beds</h3>
-		  				<h3><%=result.bathroom_count%> baths</h3>
-		  				<h3><%=result.area_square_feet%> sqft</h3>
-		  				<p> <%=result.description%> </p>
-		  				<p> $<%=result.price%> </p>
-		  				<!-- Modal -->
-		  				<div id="myModal" class="modal" role="dialog">
-		  				  <div class="modal-dialog">
-
-		  				    <!-- Modal content-->
-		  				    <div class="modal-content">
-		  				      <div class="modal-header">
-		  				        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		  				        <h4 class="modal-title"><%= result.address%></h4>
-		  				      </div>
-		  				      <div class="modal-body">
-		  				        <h1><%=result.address%></h1>
-        		  				<h2><%=result.city.name%>, <%=result.state.abbreviation%> <%=result.zipcode.number%> </h2>
-        		  				<h3><%=result.bedroom_count%> beds</h3>
-        		  				<h3><%=result.bathroom_count%> baths</h3>
-        		  				<h3><%=result.area_square_feet%> sqft</h3>
-        		  				<p> <%=result.description%> </p>
-        		  				<p> $<%=result.price%> </p>
-		  				      </div>
-		  				      <div class="modal-footer">
-		  				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		  				      </div>
-		  				    </div>
-
-		  				  </div>
-		  				</div>	
-		  			</div>
-		  		<% end %>
+		  		<% @searchResults.each_with_index do |result, index| %>
+	  				<% if index % 2 == 0 %>
+	  					<div class="row search_results">
+	  						<%= render partial: "thumb", locals: {listing: result} %>
+	  				<% else %>
+	  					<%= render partial: "thumb", locals: {listing: result} %>
+	  					</div>
+	  				<%end%>
+	  			<% end %>
 		  	<% end %>
 		  </div>
 		</div>
 	</div>
 </div>
+

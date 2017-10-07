@@ -2,9 +2,16 @@ FactoryGirl.define do
   factory :following do
     
   end
-  factory :user do
-    
+  sequence :email do |n|
+    "email#{n}@factory.com"
   end
+
+  factory :user do
+    email
+    password "foobar"
+    password_confirmation "foobar"
+  end
+
   factory :gallery do
     
   end
@@ -21,16 +28,17 @@ FactoryGirl.define do
     rent_or_sell true
     state
     city
-    zipcode 
+    zipcode
+    association :lister, factory: :user
   end
 
   factory :state do
     name "District of Columbia"
     abbreviation "DC"
     factory :state_with_associations, :parent => :state do |state|
-      listings {build_list :listing, 3}
-      cities {build_list :city, 3}
-      zipcodes {build_list :zipcode, 3}
+      listings {build_list :listing, 1}
+      cities {build_list :city, 1}
+      zipcodes {build_list :zipcode, 1}
     end
   end
 
@@ -38,7 +46,7 @@ FactoryGirl.define do
     name "Washington"
     state
     factory :city_with_associations, :parent => :city do |city|
-      listings { build_list :listing, 3 }
+      listings { build_list :listing, 1 }
     end
   end
 
@@ -47,7 +55,7 @@ FactoryGirl.define do
     number "20006"
     state
     factory :zipcode_with_associations, :parent => :zipcode do |zipcode|
-      listings { build_list :listing, 3 }
+      listings { build_list :listing, 1 }
     end
   end
 

@@ -28,10 +28,14 @@ gem 'geocoder'
 gem 'bootstrap', '~> 4.0.0.beta'
 #for modals
 gem 'bootstrap-modal-rails'
+#for forms
+gem 'bootstrap_form'
 #for images
 gem "paperclip", "~> 5.0.0"
 #devise
 gem 'devise'
+#for bootstrap dropdowns
+gem 'popper_js', '~> 1.11.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

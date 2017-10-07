@@ -25,13 +25,28 @@ class ListingsController < ApplicationController
 	def search
 		@searchResults = Listing.finalSearch(search_params, 1)
 		@listing = Listing.new
+		@listings = @searchResults
+		@following = Following.new
+		render 'index'
+	end
+
+	def simpleSearch
+		@searchResults = Listing.finalSearch(search_params, 1)
+		@listing = Listing.new
 		@listings = Listing.all
 		render 'index'
+
+	end
+
+	def search_filter
+		@listing = Listing.new
 	end
 
 	def index
 		@listing = Listing.new
 		@listings = Listing.all
+		@following = Following.new
+
 	end
 
 	def show
@@ -80,6 +95,10 @@ class ListingsController < ApplicationController
 
 	  def search_params
 	    params.permit(:address, :max_price, :min_price, :max_area_square_feet, :min_area_square_feet, :min_bedroom_count, :min_bathroom_count)
+	  end
+
+	  def simple_search_params
+	    params.permit(:search)
 	  end
 
 end

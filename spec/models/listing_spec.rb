@@ -92,6 +92,7 @@ RSpec.describe Listing, :type => :model do
 
 		it "it updates city, state, and zipcode ids if valid " do
 			params = {listing: {state_abbreviation: "MD"}}
+			State.create!(abbreviation: "MD", name: "Maryland")
 			subject.textToID(params, 1)
 			expect(subject.state.abbreviation).to eq("MD")
 		end

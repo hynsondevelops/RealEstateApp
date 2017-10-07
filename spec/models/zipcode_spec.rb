@@ -20,7 +20,7 @@ RSpec.describe Zipcode, :type => :model do
 
 	describe "Associations" do
 		it "has many listings" do
-			expect(subject.listings.size).to eq(3)
+			expect(subject.listings.size).to eq(1)
 		end
 
 		it "belongs to a state" do 

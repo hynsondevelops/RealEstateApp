@@ -115,6 +115,14 @@ class Listing < ApplicationRecord
 		["bathroom_count > ?", bathroom_count]
 	end
 
+	def self.simpleSearch(search_params)
+		queriesString = ""
+		queriesObjects = []
+		firstQuery = true;
+		queriesString, queriesObjects = addressSearch(search_params);
+		Listing.where(queriesString, queriesObjects)
+	end
+
 
 	#and_or 1 for AND, 0 for OR
 	def self.finalSearch(search_params, and_or)

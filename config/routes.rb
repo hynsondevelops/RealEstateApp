@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   resources :listings, :except => [:create]
   post '/listings/create', to: 'listings#create'
   post '/listings', to: 'listings#search'
+  get '/search_filter', to: 'listings#search_filter'
+  post '/simpleSearch', to: 'listings#simpleSearch'
   root to: "listings#index"
 end

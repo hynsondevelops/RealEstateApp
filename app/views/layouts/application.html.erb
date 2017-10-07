@@ -14,9 +14,61 @@
 	    </div>
 	    <ul class="nav navbar-nav">
 	  	    <li><a href="/listings/new">Create a Listing</a></li>
+          <li><a href="/listings/search_filter">Search</a></li>
 	    </ul>
 	  </div>
 	</nav>
+  <nav class="navbar searchbar row">
+    <div class="col-md-2">
+      <div class="searchbar_input">
+      <%= form_tag(action: "search", controller: "listings") do |f| %>
+        <%= render 'form_errors' %>
+        <%= text_field_tag :address %>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Price
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><%= label_tag :min %>:
+          <%= text_field_tag :min_price, '', size: 8 %>
+          <%= label_tag :max %>:
+          <%= text_field_tag :max_price, '', size: 8 %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Area Square Feet
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><%= label_tag :min %>:
+          <%= text_field_tag :min_area_square_feet, '', size: 8 %>
+          <%= label_tag :max %>:
+          <%= text_field_tag :max_area_square_feet, '', size: 8 %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Rooms 
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><%= label_tag :min_bedroom %>:
+          <%= text_field_tag :min_bedroom_count, '', size: 8 %>
+          <%= label_tag :min_bathroom %>:
+          <%= text_field_tag :min_bathroom_count, '', size: 8 %></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+
+    </div>
+      <%= submit_tag "", :style => "display: none;"%>
+    <% end %>
+  </nav>
   <body>
     <%= yield %>
   </body>

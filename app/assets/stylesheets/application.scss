@@ -14,6 +14,7 @@
  *= require_self
  *= require bootstrap-modal-bs3patch
  *= require bootstrap-modal
+ *= require rails_bootstrap_forms
  */
 
 @import "bootstrap";
@@ -46,6 +47,7 @@
 
 #main_map
 {
+	position: absolute;
 	display: block;
 	float: left;
     width: 100%;
@@ -120,3 +122,66 @@
 	padding: 0;
 	height: 100%;
 }
+
+.listing_thumb_info
+{
+	border: 1px solid black;
+	border-radius: 2px;
+	width: 300px;
+	background: white;
+	color: black;
+	text-decoration: none;
+
+
+}
+
+.listing_thumb_img
+{
+	border: 1px solid black;
+	width: 300px;
+}
+
+.listing_thumb
+{
+	width: 205px;
+	height: 350px;
+}
+
+.searchbar
+{
+	height: 100px;
+	border: 2px solid black;
+}
+
+.dropdown-toggle
+{
+	height: auto;
+	width: 100%;
+	border: 0;
+}
+
+.col-md-2
+{
+	padding:0;
+}
+.col-md-4
+{
+	padding: 0;
+}
+
+.searchbar_input
+{
+	width: 100%;
+	border: 0;
+}
+
+.row.search_results
+{
+	height: 400px;
+}
+
+body
+{
+	background: grey;
+}
+
