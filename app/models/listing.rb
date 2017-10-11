@@ -1,5 +1,6 @@
 class Listing < ApplicationRecord
 	validates :address, presence: true
+	validates :complete_address, presence: true
 	validates :bedroom_count, presence: true
 	validates :bathroom_count, presence: true
 	validates :area_square_feet, presence: true
@@ -32,10 +33,17 @@ class Listing < ApplicationRecord
 
 
 	def fullAddress	
+		print("->#{address}<-")
+		print("->#{city_name}<-")
+		print("->#{state_abbreviation}<-")
+		print("->#{zipcode_number}<-")
+		city = city_name
+		state = state_abbreviation
+		zipcode = zipcode_number
 		if (address == nil || city == nil || state == nil || zipcode == nil)
 			return false
 		end
-		[address, city.name, state.abbreviation, zipcode.number].join(', ')
+		return [address, city, state, zipcode].join(', ')
 	end
 
 	#updateOrCreate
@@ -88,7 +96,7 @@ class Listing < ApplicationRecord
 	end
 	
 	def self.addressSearch(address)
-		["address LIKE ?", "%#{address}%"]
+		["complete_address LIKE ?", "%#{address}%"]
 	end
 
 	def self.maxPriceSearch(max_price)
@@ -113,6 +121,10 @@ class Listing < ApplicationRecord
 
 	def self.minBathroomCountSearch(bathroom_count)
 		["bathroom_count > ?", bathroom_count]
+	end
+
+	def self.stateSearch(state_abbreviation)
+		["state_abbreviation > ?", state_abbreviation]		
 	end
 
 	def self.simpleSearch(search_params)

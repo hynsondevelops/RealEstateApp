@@ -1,0 +1,39 @@
+<h3> <%= @state.name %> (<%=@state.abbreviation%>) </h3>
+<div class="row">
+	<div class="col-md-6">
+		<h3> Cities </h3>
+		<div class="row city_row">
+			<% @cities.each_with_index do |city, index| %>
+				<% if (index % 6 == 0 && index != 0) %>
+					</div>
+					<div class="row city_row">
+						<div class="col-md-2">
+							<%= link_to city.name, city %>
+						</div>
+				<% else %>
+					<div class="col-md-2">
+						<%= link_to city.name, city %>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<h3> Zipcodes </h3>
+			<div class="row zipcode_row">
+			<% @zipcodes.each_with_index do |zipcode, index| %>
+				<% if (index % 6 == 0 && index != 0) %>
+					</div>
+					<div class="row zipcode_row">
+						<div class="col-md-2">
+							<%= link_to zipcode.number, zipcode %>
+						</div>
+				<% else %>
+					<div class="col-md-2">
+						<%= link_to zipcode.number, zipcode %>
+					</div>
+				<% end %>
+			<% end %>
+	</div>
+</div>
+

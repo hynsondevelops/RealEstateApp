@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :states
+  resources :cities
+  resources :zipcodes
   resources :galleries
   resources :followings
   resources :pictures
@@ -9,5 +12,6 @@ Rails.application.routes.draw do
   post '/listings', to: 'listings#search'
   get '/search_filter', to: 'listings#search_filter'
   post '/simpleSearch', to: 'listings#simpleSearch'
+  get '/users/listed', to: 'users#listed', as: 'users_listed'
   root to: "listings#index"
 end

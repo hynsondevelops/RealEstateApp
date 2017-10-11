@@ -6,6 +6,10 @@ class ListingsController < ApplicationController
 
 	def create
 		@listing = Listing.new(listing_params)
+		print("              ->")
+		print(@listing.fullAddress)
+		print("<-              ")
+		@listing.update_attributes(:complete_address => @listing.fullAddress)
 		@listing.textToID(params, 0)
 		if (@listing.save)
 			if params[:images]

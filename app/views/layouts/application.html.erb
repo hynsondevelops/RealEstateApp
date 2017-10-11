@@ -14,18 +14,29 @@
 	    </div>
 	    <ul class="nav navbar-nav">
 	  	    <li><a href="/listings/new">Create a Listing</a></li>
-          <li><a href="/listings/search_filter">Search</a></li>
+          <% if user_signed_in? %>
+            <li>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
+            </li>
+          <% else %>
+            <li>
+            <%= link_to('Login', new_user_session_path)  %>  
+            </li>
+          <% end %>
+          <% if user_signed_in? %>
+            <%= link_to('Followed', followings_path) %>
+          <% end %>       
 	    </ul>
 	  </div>
 	</nav>
-  <nav class="navbar searchbar row">
-    <div class="col-md-2">
+  <nav class="navbar searchbar row"> 
+    <div class="col-md-3">
       <div class="searchbar_input">
-      <%= form_tag(action: "search", controller: "listings") do |f| %>
-        <%= text_field_tag :address %>
+      <%= form_tag(action: "search", controller: "/listings") do |f| %>
+        <%= text_field_tag :address, '', size: 30  %>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1">
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Price
         <span class="caret"></span></button>
@@ -37,7 +48,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Area Square Feet
         <span class="caret"></span></button>
@@ -49,7 +60,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-1">
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Rooms 
         <span class="caret"></span></button>
@@ -63,9 +74,8 @@
 
     </div>
     <div class="col-md-4">
-
-    </div>
       <%= submit_tag "", :style => "display: none;"%>
+    </div>
     <% end %>
   </nav>
   <body>

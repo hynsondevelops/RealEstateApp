@@ -1,0 +1,12 @@
+<div class="row listing_row">
+<% @listings.each_with_index do |listing, index| %>
+	<% if (index % 6 == 0 && index != 0) %>
+		</div>
+		<div class="row listing_row">
+			<%= render partial: "/listings/thumb", locals: {listing: listing, sizing: "col-md-2" }%>
+
+	<% else %>
+		<%= render partial: "/listings/thumb", locals: {listing: listing, sizing: "col-md-2" }%>
+
+	<% end %>
+<% end %>

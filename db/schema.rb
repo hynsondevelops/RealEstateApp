@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003172643) do
+ActiveRecord::Schema.define(version: 20171009150805) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20171003172643) do
     t.float    "longitude"
     t.boolean  "rent_or_sell"
     t.integer  "user_id"
+    t.string   "complete_address"
   end
 
   create_table "pictures", force: :cascade do |t|

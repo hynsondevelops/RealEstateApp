@@ -1,5 +1,5 @@
 <div class="followings">
-	<% @followed_listings.each_with_index do |listing, index| %>
+	<% @listed.each_with_index do |listing, index| %>
 		<% if index % 4 == 0 %>
 			<div class="row">
 				<%= render partial: "/listings/thumb", locals: {listing: listing, sizing: "col-md-3"} %>

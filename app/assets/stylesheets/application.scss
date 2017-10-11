@@ -149,8 +149,9 @@
 
 .searchbar
 {
-	height: 100px;
+	height: 35px;
 	border: 2px solid black;
+
 }
 
 .dropdown-toggle
@@ -182,7 +183,7 @@
 
 body
 {
-	background: grey;
+	background: white;
 }
 
 .page_content
@@ -191,3 +192,21 @@ body
 	margin-right: 5%;
 }
 
+.followings
+{
+	border: 5px solid black;
+}
+
+[class*="col-"] {
+    padding: 0;
+}
+
+.zipcode_row
+{
+	height: 30px;
+}
+
+.city_row
+{
+	height: 30px;
+}

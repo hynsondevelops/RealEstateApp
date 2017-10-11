@@ -8,28 +8,27 @@
 
 
 require 'csv'
+
+start = Time.now
+
 csv_file = File.read('us_state_abbreviations.csv')
 csv = CSV.parse(csv_file, :headers => true)
 stateAbbreviationHash = Hash.new
 idCounter = 0
 csv.each do |row|
-	if (idCounter < 15)
-		State.create!(name: row[0], abbreviation: row[1])
-		idCounter += 1
-		stateAbbreviationHash[row[1]] = idCounter
-	end
+	State.create!(name: row[0], abbreviation: row[1])
+	idCounter += 1
+	stateAbbreviationHash[row[1]] = idCounter
 end
 
 csv_file = File.read('cities.csv')
 csv = CSV.parse(csv_file, :headers => true)
 i = 0
 csv.each do |row|
-	if (i < 15)
-		if (stateAbbreviationHash[row[1]] != nil)
-			City.create!(name: row[0], state_id: stateAbbreviationHash[row[1]])
-		end
-		i += 1
+	if (stateAbbreviationHash[row[1]] != nil)
+		City.create!(name: row[0], state_id: stateAbbreviationHash[row[1]])
 	end
+	i += 1
 end
 
 csv_file = File.read('us_postal_codes.csv')
@@ -38,9 +37,14 @@ csv.each do |row|
 	Zipcode.create!(number: row[0], name: row[1], state_id: stateAbbreviationHash[row[3]])
 end
 
-Listing.create!(address: "1600 Pennsylvania Ave NW", bedroom_count: "3", bathroom_count: "2.5", area_square_feet: 2000, description: "This is boiler plate for the description of this listing.", price: 150000, state_id: 1, city_id: 1, zipcode_id: 1)
+# code to time
+finish = Time.now
 
+diff = finish - start
 
-Listing.create!(address: "2135 Queens Chapel Rd NE", bedroom_count: "3", bathroom_count: "2.5", area_square_feet: 2000, description: "This is boiler plate for the description of this listing.", price: 150000, state_id: 1, city_id: 1, zipcode_id: 2)
+print(diff)
+# Listing.create!(address: "1600 Pennsylvania Ave NW", bedroom_count: "3", bathroom_count: "2.5", area_square_feet: 2000, description: "This is boiler plate for the description of this listing.", price: 150000, state_id: 1, city_id: 1, zipcode_id: 1)
 
-Listing.create!(address: "915 E St NW", bedroom_count: "3", bathroom_count: "2.5", area_square_feet: 2000, description: "This is boiler plate for the description of this listing.", price: 150000, state_id: 1, city_id: 1, zipcode_id: 3)
+# Listing.create!(address: "2135 Queens Chapel Rd NE", bedroom_count: "3", bathroom_count: "2.5", area_square_feet: 2000, description: "This is boiler plate for the description of this listing.", price: 150000, state_id: 1, city_id: 1, zipcode_id: 2)
+
+# Listing.create!(address: "915 E St NW", bedroom_count: "3", bathroom_count: "2.5", area_square_feet: 2000, description: "This is boiler plate for the description of this listing.", price: 150000, state_id: 1, city_id: 1, zipcode_id: 3)
