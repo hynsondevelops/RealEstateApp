@@ -7,12 +7,18 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverted">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="/listings/">RealEstateApp</a>
 	    </div>
 	    <ul class="nav navbar-nav">
+        <li> <a href="/buy"> Buy </a> </li> 
+        <li> <a href="/rent"> Rent </a> </li> 
+        <li> <a href="/states"> States </a> </li>
+        <% if user_signed_in? %>
+          <li> <%= link_to('Followed', followings_path) %> </li>
+        <% end %>  
 	  	    <li><a href="/listings/new">Create a Listing</a></li>
           <% if user_signed_in? %>
             <li>
@@ -22,10 +28,7 @@
             <li>
             <%= link_to('Login', new_user_session_path)  %>  
             </li>
-          <% end %>
-          <% if user_signed_in? %>
-            <%= link_to('Followed', followings_path) %>
-          <% end %>       
+          <% end %>      
 	    </ul>
 	  </div>
 	</nav>
@@ -33,7 +36,7 @@
     <div class="col-md-3">
       <div class="searchbar_input">
       <%= form_tag(action: "search", controller: "/listings") do |f| %>
-        <%= text_field_tag :address, '', size: 30  %>
+        <%= text_field_tag "search_params[address]", '', size: 30  %>
       </div>
     </div>
     <div class="col-md-1">
@@ -42,9 +45,9 @@
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li><%= label_tag :min %>:
-          <%= text_field_tag :min_price, '', size: 8 %>
+          <%= text_field_tag "search_params[min_price]", '', size: 8 %>
           <%= label_tag :max %>:
-          <%= text_field_tag :max_price, '', size: 8 %></li>
+          <%= text_field_tag "search_params[max_price]", '', size: 8 %></li>
         </ul>
       </div>
     </div>
@@ -54,9 +57,9 @@
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li><%= label_tag :min %>:
-          <%= text_field_tag :min_area_square_feet, '', size: 8 %>
+          <%= text_field_tag "search_params[min_area_square_feet]", '', size: 8 %>
           <%= label_tag :max %>:
-          <%= text_field_tag :max_area_square_feet, '', size: 8 %></li>
+          <%= text_field_tag "search_params[max_area_square_feet]", '', size: 8 %></li>
         </ul>
       </div>
     </div>
@@ -66,14 +69,39 @@
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li><%= label_tag :min_bedroom %>:
-          <%= text_field_tag :min_bedroom_count, '', size: 8 %>
+          <%= text_field_tag "search_params[min_bedroom_count", '', size: 8 %>
           <%= label_tag :min_bathroom %>:
-          <%= text_field_tag :min_bathroom_count, '', size: 8 %></li>
+          <%= text_field_tag "search_params[min_bathroom_count", '', size: 8 %></li>
         </ul>
       </div>
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-1">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Buy/Rent 
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><%= label_tag :rent %>:
+            <%= hidden_field_tag "search_params[rent]", false %>
+            <% if request.env['PATH_INFO'] == "/rent"%>
+              <%= check_box_tag "search_params[rent]", true, true %>
+            <% else %>
+              <%= check_box_tag "search_params[rent]", true, false %>
+            <% end %>
+            <%= label_tag :buy %>
+            <%= hidden_field_tag "search_params[buy]", false %>
+            <% if request.env['PATH_INFO'] == "/buy"%>
+              <%= check_box_tag "search_params[buy]", true, true %>
+            <% else %>
+              <%= check_box_tag "search_params[buy]", true, false %>
+            <% end %>        
+            </li>
+        </ul>
+      </div>
+
+    </div>
+    
+    <div class="col-md-3">
       <%= submit_tag "", :style => "display: none;"%>
     </div>
     <% end %>

@@ -24,12 +24,14 @@ gem 'coffee-rails', '~> 4.2'
 #Project Specific Gems
 #For latitude/longitude
 gem 'geocoder'
-#For styling
-gem 'bootstrap', '~> 4.0.0.beta'
+#for styling
+gem 'bootstrap-sass', '3.3.6'
 #for modals
 gem 'bootstrap-modal-rails'
 #for forms
 gem 'bootstrap_form'
+#for navbar
+gem 'rails_bootstrap_navbar'
 #for images
 gem "paperclip", "~> 5.0.0"
 #devise

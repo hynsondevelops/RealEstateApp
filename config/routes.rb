@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   post '/simpleSearch', to: 'listings#simpleSearch'
   get '/users/listed', to: 'users#listed', as: 'users_listed'
   root to: "listings#index"
+  get '/buy', to: "listings#buy"
+  get '/rent', to: "listings#rent"
+
 end

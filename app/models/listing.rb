@@ -127,6 +127,10 @@ class Listing < ApplicationRecord
 		["state_abbreviation > ?", state_abbreviation]		
 	end
 
+	def self.buyRent(rent_or_sell)
+		["rent_or_sell = ?", rent_or_sell]		
+	end
+
 	def self.simpleSearch(search_params)
 		queriesString = ""
 		queriesObjects = []
@@ -138,6 +142,16 @@ class Listing < ApplicationRecord
 
 	#and_or 1 for AND, 0 for OR
 	def self.finalSearch(search_params, and_or)
+		if (search_params[:rent] == "true" && search_params[:buy] == "false") #rentals only
+			print("rent")
+			search_params[:rent_or_sell] = false
+		elsif (search_params[:rent] == "false" && search_params[:buy] == "true") #sales only
+			print("sales")
+			search_params[:rent_or_sell] = true
+		else
+			print("both")
+			search_params[:rent_or_sell] = ""
+		end
 		queriesString = ""
 		queriesObjects = []
 		firstQuery = true;
@@ -233,6 +247,25 @@ class Listing < ApplicationRecord
 		end
 		if (search_params[:min_bathroom_count] != "")
 			tempQuery = minBathroomCountSearch(search_params[:min_bathroom_count])
+			if (firstQuery)
+				queriesString += "#{tempQuery[0]} "
+				firstQuery = false
+			else
+				if (and_or)
+					queriesString += " AND"
+				else
+					queriesString += " OR"
+				end
+				queriesString += " #{tempQuery[0]} "
+			end
+			queriesObjects.push(tempQuery[1])
+		end
+		if (search_params[:rent_or_sell] != "")
+			tempQuery = buyRent(search_params[:rent_or_sell])
+			print("1. ")
+			print("#{tempQuery[0]}")
+			print("2. ")
+			print("#{tempQuery[1]}")
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
 				firstQuery = false

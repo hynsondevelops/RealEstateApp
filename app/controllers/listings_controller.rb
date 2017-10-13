@@ -47,6 +47,7 @@ class ListingsController < ApplicationController
 	end
 
 	def index
+
 		@listing = Listing.new
 		@listings = Listing.all
 		@following = Following.new
@@ -89,6 +90,24 @@ class ListingsController < ApplicationController
 	    redirect_to '/listings'
 	end
  
+	def buy
+		@following = Following.new
+		@listings = []
+		@results = Listing.find_by(rent_or_sell: true)
+		if (@results != nil)
+			@listings.push(@results)
+		end
+	end
+
+	def rent
+		@following = Following.new
+		@listings = []
+		@results = Listing.find_by(rent_or_sell: false)
+		if (@results != nil)
+			@listings.push(@results)
+		end	
+	end
+
 
 	private
 
@@ -98,7 +117,7 @@ class ListingsController < ApplicationController
 	  end
 
 	  def search_params
-	    params.permit(:address, :max_price, :min_price, :max_area_square_feet, :min_area_square_feet, :min_bedroom_count, :min_bathroom_count)
+	    params.require(:search_params).permit(:address, :max_price, :min_price, :max_area_square_feet, :min_area_square_feet, :min_bedroom_count, :min_bathroom_count, :rent, :buy)
 	  end
 
 	  def simple_search_params
