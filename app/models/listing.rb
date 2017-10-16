@@ -86,6 +86,41 @@ class Listing < ApplicationRecord
 	end
 
 
+	#order
+	#Descending 0
+	#Ascending 1
+	def self.sortByPrice(order)
+		listings = Listing.all
+		listings = listings.sort_by do |listing|
+			if (order == 0)
+				listing.price
+			else	
+				-listing.price
+			end
+		end
+		return listings
+	end
+
+	def self.sortByRecent()
+		listings = Listing.all
+		listings = listings.sort_by do |listing|
+			listing.created_at
+		end
+		return listings
+	end
+
+	def self.sortBySquareFeet(order)
+		listings = Listing.all
+		listings = listings.sort_by do |listing|
+			if (order == 0)
+				listing.area_square_feet
+			else	
+				-listing.area_square_feet
+			end
+		end
+		return listings
+	end
+
 	def self.search(listing_params)
 	  if search
 	    a = where("address LIKE ? AND bedroom_count LIKE ? AND bathroom_count LIKE ? AND area_square_feet LIKE ? AND price LIKE ?", "%#{search}%", "%#{bedroom_count}%", "%#{bathroom_count}")

@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   root to: "listings#index"
   get '/buy', to: "listings#buy"
   get '/rent', to: "listings#rent"
+  get "/home", to: "listings#home"
 
 end

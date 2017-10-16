@@ -108,6 +108,11 @@ class ListingsController < ApplicationController
 		end	
 	end
 
+	def home
+		@following = Following.new
+		@listingTopics = [["Expensive", Listing.sortByPrice(0)], ["Cheap", Listing.sortByPrice(1)], ["Recent", Listing.sortByRecent()], ["Largest", Listing.sortBySquareFeet(0)]]
+	end
+
 
 	private
 

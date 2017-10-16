@@ -5,8 +5,6 @@
  
 <% end %>
 
-<%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-
 <div class="row">
 	<div class="col-sm-6">
 		<div id="main_map" class="map"></div>
@@ -48,7 +46,7 @@
 	  					<div class="row search_results">
 	  						<%= render partial: "thumb", locals: {listing: result, sizing: "col-md-6" }%>
 	  				<% else %>
-	  					<%= render partial: "thumb", locals: {listing: result, sizing: "col-md-6"}%>
+	  						<%= render partial: "thumb", locals: {listing: result, sizing: "col-md-6"}%>
 	  					</div>
 	  				<%end%>
 	  			<% end %>

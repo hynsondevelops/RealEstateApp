@@ -51,7 +51,7 @@
 	display: block;
 	float: left;
     width: 100%;
-    height: 100%;
+    height: 1000px;
 }
 
 .map
@@ -108,7 +108,6 @@
 
 .navbar-header
 {
-	border: 2px solid black;
 }
 
 .row
@@ -150,8 +149,7 @@
 .searchbar
 {
 	height: 35px;
-	border: 2px solid black;
-
+	background: #337ab7;
 }
 
 .dropdown-toggle
@@ -174,6 +172,8 @@
 {
 	width: 100%;
 	border: 0;
+	margin-left: 5px;
+	margin-top: 12px;
 }
 
 .row.search_results
@@ -183,11 +183,14 @@
 
 body
 {
+	display: block;
 	background: white;
 }
 
 .page_content
 {
+	display: block;
+	height: 1000px;
 	margin-left: 5%;
 	margin-right: 5%;
 }
@@ -215,4 +218,60 @@ body
 .nav>li 
 {
   float: left;
+}
+
+.row
+{
+	height: auto;
+}
+
+.navbar-brand
+{
+	height: 50px;
+	text-align: center;
+}
+
+
+#site_icon
+{
+	margin-top: 50px;
+}
+
+#searchPart
+{
+	height: 35px;
+	margin-top: -35px;
+}
+
+.bar
+{
+	height:5px;
+	background:blue;
+}
+
+#appIcon
+{
+	padding: 50px;
+}
+
+#sRow
+{
+	padding-left: 193px;
+	margin-top: -50px;
+}
+
+.userInfo
+{
+	float:right;
+}
+
+.search-drop-down
+{
+	margin-top: 9px;
+}
+
+footer
+{
+	background: #337ab7;
+	height: 50px; 
 }

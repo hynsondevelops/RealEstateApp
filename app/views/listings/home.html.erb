@@ -1,0 +1,11 @@
+<div class="row">
+	<% @listingTopics.each do |listingTopic| %>
+		<div class="col-md-3">
+			<h3><%= listingTopic[0] %></h3>
+			<% listingTopic[1].each do |listing| %>
+				<%= render partial: "/listings/thumb", locals: {listing: listing, sizing: "col-md-3"} %>
+			<% end %>
+		</div>
+	<% end %>
+
+</div>
