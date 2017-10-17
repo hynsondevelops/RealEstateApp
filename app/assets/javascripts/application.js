@@ -18,6 +18,7 @@
 //= require bootstrap-modal
 //= require bootstrap-modalmanager
 //= require bootstrap
+//= require owl.carousel
 
 
 /*
@@ -33,7 +34,6 @@ function initMap(latitude, longitude) {
 	});
 }
 */
-
 
 
 

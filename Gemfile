@@ -38,6 +38,9 @@ gem "paperclip", "~> 5.0.0"
 gem 'devise'
 #for bootstrap dropdowns
 gem 'popper_js', '~> 1.11.1'
+#for listing carousels
+gem 'owlcarousel-rails'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

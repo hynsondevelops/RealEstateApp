@@ -10,7 +10,7 @@
   <body>
     <div class="row">
       <ul class="nav navbar-nav">
-          <li> <a id="appIcon" href="/listings/"> RealEstateApp </a> </li>
+          <li> <a id="appIcon" href="/home/"> RealEstateApp </a> </li>
 
           <li> <a href="/buy"> Buy </a> </li> 
           <li> <a href="/rent"> Rent </a> </li> 
@@ -122,6 +122,12 @@
           <% end %>
         </div>
       </div>
+      <% if (request.env['PATH_INFO'] == "/home") %>
+        <div class="row">
+          <%= image_tag("bannerImage", class: "col-md-12", id: "bannerImage") %>
+        </div>
+      <% end %>
+)
     </div>
     <div class="page_content">
       <%= yield %>

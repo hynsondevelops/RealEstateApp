@@ -121,6 +121,7 @@ class Listing < ApplicationRecord
 		return listings
 	end
 
+
 	def self.search(listing_params)
 	  if search
 	    a = where("address LIKE ? AND bedroom_count LIKE ? AND bathroom_count LIKE ? AND area_square_feet LIKE ? AND price LIKE ?", "%#{search}%", "%#{bedroom_count}%", "%#{bathroom_count}")
