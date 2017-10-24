@@ -1,8 +1,11 @@
 <h3> Contact Agent </h3>
-
-<%= lister.name %>
-<%= lister.phone_number %>
-<%= lister.email %>
+<div class="lister-description">
+	<%= image_tag lister.photo.url(:thumb), class: "lister-photo"%>
+	<%= rating_for lister, "user_score" %>
+	<p><%= lister.name %><p>
+	<%= lister.phone_number %>
+	<%= lister.email %>
+</div>
 <div class="contact_form">
 	<h3> Contact Agent </h3>
 	<%= form_tag %>

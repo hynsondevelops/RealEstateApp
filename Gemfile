@@ -40,6 +40,8 @@ gem 'devise'
 gem 'popper_js', '~> 1.11.1'
 #for listing carousels
 gem 'owlcarousel-rails'
+#user ratings
+gem 'ratyrate'
 
 
 # Use jquery as the JavaScript library
