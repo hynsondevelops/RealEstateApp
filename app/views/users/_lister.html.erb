@@ -1,15 +1,25 @@
 <h3> Contact Agent </h3>
-<div class="lister-description">
-	<%= image_tag lister.photo.url(:thumb), class: "lister-photo"%>
-	<%= rating_for lister, "user_score" %>
-	<p><%= lister.name %><p>
-	<%= lister.phone_number %>
-	<%= lister.email %>
+<div class="lister-description row">
+	<div class="col-md-6 lister-photo-container">
+		<%= image_tag lister.photo.url(:thumb), class: "lister-photo"%>
+	</div>
+	<div class="col-md-6">
+		<p><%= lister.name %></p>
+		<%= rating_for lister, "user_score" %>
+		<p><%= lister.company_name %></p>
+		<p><%= lister.phone_number %></p>
+		<p><%= lister.email %></p>
+	</div>
 </div>
 <div class="contact_form">
 	<h3> Contact Agent </h3>
 	<%= form_tag %>
-	<%= text_field_tag :message %>
+	<%= label_tag :name %>
+	<%= text_field_tag :name, current_user.name %><br>
+	<%= label_tag :phone %>
+	<%= text_field_tag :phone_number, current_user.phone_number %><br>
+	<%= label_tag :message %>
+	<%= text_field_tag :message %><br>
 	<%= submit_tag %>
 </div>
 

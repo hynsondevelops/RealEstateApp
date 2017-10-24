@@ -336,7 +336,7 @@ html body {
 
 .main-image
 {
-	margin-left: 16.6%
+	margin-left: 25%;
 }
 
 .showing-map
@@ -345,10 +345,16 @@ html body {
 
 .lister-photo
 {
-	float: left;
+	display: block;
+    margin: auto auto;
 }
 
 .lister-description
 {
 	display:block;
+}
+
+.lister-photo-container
+{
+	text-align: center;
 }

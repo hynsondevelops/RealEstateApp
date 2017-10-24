@@ -12,12 +12,12 @@
 
 
 <div class="row">
-  <div class="col-md-2 lister">
+  <div class="col-md-3 lister">
     <div class="lister-info">
       <%= render partial: "users/lister", locals: {lister: @listing.lister} %>
     </div>
   </div>
-  <div class="col-md-6 main-image">
+  <div class="col-md-5 main-image">
   	<%= image_tag @listing.pictures[0].image.url(:large), class: "image_gallery_element" %>
     <p> $<%=@listing.price%> </p>
     <p><%=@listing.address%>, <%=@listing.city.name%>, <%=@listing.state.abbreviation%> <%=@listing.zipcode.number%> </p> 
