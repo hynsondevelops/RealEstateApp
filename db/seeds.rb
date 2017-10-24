@@ -16,9 +16,13 @@ csv = CSV.parse(csv_file, :headers => true)
 stateAbbreviationHash = Hash.new
 idCounter = 0
 csv.each do |row|
-	State.create!(name: row[0], abbreviation: row[1])
+	state = State.create!(name: row[0], abbreviation: row[1])
 	idCounter += 1
 	stateAbbreviationHash[row[1]] = idCounter
+	filename = "app/assets/images/flags/#{state.abbreviation.downcase}.png"
+	if (File.file?(filename))
+		state.update_attributes(:flag => File.new(filename, "r"))
+	end
 end
 
 csv_file = File.read('cities.csv')
@@ -26,7 +30,7 @@ csv = CSV.parse(csv_file, :headers => true)
 i = 0
 csv.each do |row|
 	if (stateAbbreviationHash[row[1]] != nil)
-		City.create!(name: row[0], state_id: stateAbbreviationHash[row[1]])
+		City.create(name: row[0], state_id: stateAbbreviationHash[row[1]])
 	end
 	i += 1
 end

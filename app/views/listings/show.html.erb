@@ -1,11 +1,40 @@
+<%= javascript_tag do %>
+  window.listings = <%= raw @listing.to_json %>;
+  window.key = '<%=GOOGLE_MAPS_API_KEY%>';
+
+  window.onload = loadScript();
+<% end %>
+
+
 <% if flash[:notice] != nil %>
 	    <div class="alert alert-success"> flash[:notice] </div>
 <% end %>
 
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-2 lister">
+    <div class="lister-info">
+      <%= render partial: "users/lister", locals: {lister: @listing.lister} %>
+    </div>
+  </div>
+  <div class="col-md-6 main-image">
+  	<%= image_tag @listing.pictures[0].image.url(:large), class: "image_gallery_element" %>
+    <p> $<%=@listing.price%> </p>
+    <p><%=@listing.address%>, <%=@listing.city.name%>, <%=@listing.state.abbreviation%> <%=@listing.zipcode.number%> </p> 
+    <p> <%=@listing.bedroom_count%> beds / <%=@listing.bathroom_count%> baths </p>
+    <% if current_user != nil%>
+      <% if !current_user.followed?(@listing) %>
+        <%= form_for(@following, url: {controller: :followings, action: :create}) do |f| %>
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.hidden_field :listing_id, :value => @listing.id %>
+              <%= f.submit "Favorite" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-4 show-map">
+    <div class="map showing-map">
+    </div>
 
   </div>
-  <%= render partial: "/listings/thumb", locals: {listing: @listing, sizing: "col-md-4 col-md-offset-4"} %>
 </div>

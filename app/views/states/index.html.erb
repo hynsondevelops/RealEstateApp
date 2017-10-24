@@ -1,3 +1,16 @@
-<% @states.each do |state| %>
-	<p><%= link_to "#{state.name} (#{state.abbreviation})", state %></p>
+<% @states.each_with_index do |state, index| %>
+	<div class="row zipcode_row">
+	<% if (index % 6 == 0 && index != 0) %>
+		</div>
+		<div class="row zipcode_row">
+			<div class="col-md-2">
+				<%= image_tag("#{state.flag.url(:thumb)}") %>
+				<p><%= link_to "#{state.name} (#{state.abbreviation})", state %></p>		
+			</div>
+	<% else %>
+		<div class="col-md-2">
+			<%= image_tag("#{state.flag.url(:thumb)}") %>
+			<p><%= link_to "#{state.name} (#{state.abbreviation})", state %></p>	
+		</div>
+	<% end %>
 <% end %>

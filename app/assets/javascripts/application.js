@@ -84,7 +84,7 @@ function initMap() {
 function loadScript() {
       var script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = "https://maps.googleapis.com/maps/api/js?key" + window.key + "=&sensor=false&callback=initMap";
+      script.src = "https://maps.googleapis.com/maps/api/js?key=" + window.key + "=&sensor=false&callback=initMap";
       document.body.appendChild(script);
 }
 

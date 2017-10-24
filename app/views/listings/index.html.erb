@@ -1,57 +1,30 @@
 <%= javascript_tag do %>
   window.listings = <%= raw @listings.to_json %>;
-  window.onload = loadScript()
-  window.key = '<%=GOOGLE_MAPS_API_KEY%>'
- 
-<% end %>
+  window.key = '<%=GOOGLE_MAPS_API_KEY%>';
 
+  window.onload = loadScript();
+<% end %>
 <div class="row">
-	<div class="col-sm-6">
+	<div class="col-md-5">
 		<div id="main_map" class="map"></div>
 	</div>
-	<div class="col-sm-6">
-		<div id ="search_filter">
-		  <h3> Search filter </h3>
-		  <% @test = "search"%>
-		  <%= form_tag(action: @test, controller: "listings") do |f| %>
-		    <%= label_tag :address %><br>
-		    <%= text_field_tag :address %>
-		    <p> Price </p>
-		    <%= label_tag :min %>:
-		    <%= text_field_tag :min_price, '', size: 8 %>
-		    <%= label_tag :max %>:
-		    <%= text_field_tag :max_price, '', size: 8 %><br />
+	<div class="col-md-7 row">
+		<div class="row listing_row">
+			<h3 class="centered"> Search </h3>
+			<% @listings.each_with_index do |listing, index| %>
+				<% if (index % 3 == 0 && index != 0) %>
+					</div>
+					<div class="row listing_row">
+						<div class="col-md-4">
+								<%= render partial: "/listings/thumb", locals: {listing: listing, sizing: "auto"}%>
+						</div>
 
-		    <%= label_tag :max_area_square_feet %>:
-		    <%= text_field_tag :max_area_square_feet %><br />
-
-		    <%= label_tag :min_area_square_feet %>:
-		    <%= text_field_tag :min_area_square_feet %><br />
-
-		    <%= label_tag :min_bedroom_count %>:
-		    <%= text_field_tag :min_bedroom_count %><br />
-
-		    <%= label_tag :min_bathroom_count %>:
-		    <%= text_field_tag :min_bathroom_count %><br />
-
-		    <%= label_tag :rent_or_sell %>:
-		    <%= text_field_tag :rent_or_sell %><br />
-		    <%= submit_tag %>
-		  <% end %>
-		  <div id="search_results">
-		  	<% if @searchResults != nil %>
-		  		<%= @searchResults.length %>
-		  		<% @searchResults.each_with_index do |result, index| %>
-	  				<% if index % 2 == 0 %>
-	  					<div class="row search_results">
-	  						<%= render partial: "thumb", locals: {listing: result, sizing: "col-md-6" }%>
-	  				<% else %>
-	  						<%= render partial: "thumb", locals: {listing: result, sizing: "col-md-6"}%>
-	  					</div>
-	  				<%end%>
-	  			<% end %>
-		  	<% end %>
-		  </div>
+				<% else %>
+					<div class="col-md-4">
+						<%= render partial: "/listings/thumb", locals: {listing: listing, sizing: "auto"}%>
+					</div>
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 </div>

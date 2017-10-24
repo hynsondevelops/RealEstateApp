@@ -191,7 +191,7 @@ class Listing < ApplicationRecord
 		queriesString = ""
 		queriesObjects = []
 		firstQuery = true;
-		if (search_params[:address] != "")
+		if (search_params[:address] != "" )
 			tempQuery = addressSearch(search_params[:address])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
@@ -206,7 +206,7 @@ class Listing < ApplicationRecord
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:max_price] != "")
+		if (not(search_params[:max_price] != "") && not(search_params[:max_price] != nil))
 			tempQuery = maxPriceSearch(search_params[:max_price])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
@@ -221,7 +221,7 @@ class Listing < ApplicationRecord
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:min_price] != "")
+		if (not(search_params[:min_price] != "") && not(search_params[:min_price] != nil))
 			tempQuery = minPriceSearch(search_params[:min_price])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
@@ -236,7 +236,7 @@ class Listing < ApplicationRecord
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:max_area_square_feet] != "")
+		if (not(search_params[:max_area_square_feet] != "") && not(search_params[:max_area_square_feet] != nil))
 			tempQuery = maxAreaSquareFeetSearch(search_params[:max_area_square_feet])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
@@ -251,7 +251,7 @@ class Listing < ApplicationRecord
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:min_area_square_feet] != "")
+		if (not(search_params[:min_area_square_feet] != "") && not(search_params[:min_area_square_feet] != nil))
 			tempQuery = minAreaSquareFeetSearch(search_params[:min_area_square_feet])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
@@ -266,7 +266,7 @@ class Listing < ApplicationRecord
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:min_bedroom_count] != "")
+		if (not(search_params[:min_bedroom_count] != "") && not(search_params[:min_bedroom_count] != nil))
 			tempQuery = minBedroomCountSearch(search_params[:min_bedroom_count])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "
@@ -281,7 +281,7 @@ class Listing < ApplicationRecord
 			end
 			queriesObjects.push(tempQuery[1])
 		end
-		if (search_params[:min_bathroom_count] != "")
+		if (not(search_params[:min_bathroom_count] != "") && not(search_params[:min_bathroom_count] != nil))
 			tempQuery = minBathroomCountSearch(search_params[:min_bathroom_count])
 			if (firstQuery)
 				queriesString += "#{tempQuery[0]} "

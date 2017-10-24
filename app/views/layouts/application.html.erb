@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div class="row">
+    <div class="row navbar-row">
       <ul class="nav navbar-nav">
           <li> <a id="appIcon" href="/home/"> RealEstateApp </a> </li>
 
@@ -41,7 +41,7 @@
           <div class="col-md-2">
             <div class="searchbar_input">
             <%= form_tag(action: "search", controller: "/listings") do |f| %>
-              <%= text_field_tag "search_params[address]", '', size: 35  %>
+              <%= text_field_tag "search_params[address]", '', size: 35, placeholder: "Search Listings..."  %>
             </div>
           </div>
           <div class="col-md-2">
@@ -127,23 +127,22 @@
           <%= image_tag("bannerImage", class: "col-md-12", id: "bannerImage") %>
         </div>
       <% end %>
-)
     </div>
     <div class="page_content">
       <%= yield %>
     </div>
+    <div class="doodoo">
+    </div>
     <footer class="row">
-      <ul class="nav navbar-nav">
-          <li> <a id="appIcon" href="/listings/"> RealEstateApp </a> </li>
-
-          <li> <a href="/buy"> Buy </a> </li> 
-          <li> <a href="/rent"> Rent </a> </li> 
-          <li> <a href="/states"> States </a> </li>
-          <% if user_signed_in? %>
-            <li> <%= link_to('Followed', followings_path) %> </li>
-          <% end %>  
-          <li><a href="/listings/new">Create a Listing</a></li>
-      </ul>
+      <nav class="nav navbar-custom">
+        <ul class="nav navbar-nav">
+            <li> <a href="/about"> About </a> </li> 
+            <% if user_signed_in? %>
+              <li> <%= link_to('Followed', followings_path) %> </li>
+            <% end %>  
+            <li><a href="/listings/new">Create a Listing</a></li>
+        </ul>
+      </nav>
     </footer>
   </body>
 </html>

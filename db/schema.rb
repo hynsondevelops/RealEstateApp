@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009150805) do
+ActiveRecord::Schema.define(version: 20171022144127) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -62,9 +62,13 @@ ActiveRecord::Schema.define(version: 20171009150805) do
 
   create_table "states", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "abbreviation"
+    t.string   "flag_file_name"
+    t.string   "flag_content_type"
+    t.integer  "flag_file_size"
+    t.datetime "flag_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -80,6 +84,14 @@ ActiveRecord::Schema.define(version: 20171009150805) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "phone_number"
+    t.string   "name"
+    t.integer  "rating"
+    t.string   "company_name"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -92,20 +92,13 @@ class ListingsController < ApplicationController
  
 	def buy
 		@following = Following.new
-		@listings = []
-		@results = Listing.find_by(rent_or_sell: true)
-		if (@results != nil)
-			@listings.push(@results)
-		end
+		@listings = Listing.where(rent_or_sell: true)
 	end
 
 	def rent
 		@following = Following.new
-		@listings = []
-		@results = Listing.find_by(rent_or_sell: false)
-		if (@results != nil)
-			@listings.push(@results)
-		end	
+		@listings = Listing.where(rent_or_sell: false)
+		
 	end
 
 	def home

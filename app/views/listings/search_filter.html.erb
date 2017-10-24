@@ -24,3 +24,32 @@
   <%= text_field_tag :min_bathroom_count %><br />
   <%= submit_tag %>
 <% end %>
+
+<div id ="search_filter">
+  <h3> Search filter </h3>
+  <% @test = "search"%>
+  <%= form_tag(action: @test, controller: "listings") do |f| %>
+    <%= label_tag :address %><br>
+    <%= text_field_tag :address %>
+    <p> Price </p>
+    <%= label_tag :min %>:
+    <%= text_field_tag :min_price, '', size: 8 %>
+    <%= label_tag :max %>:
+    <%= text_field_tag :max_price, '', size: 8 %><br />
+
+    <%= label_tag :max_area_square_feet %>:
+    <%= text_field_tag :max_area_square_feet %><br />
+
+    <%= label_tag :min_area_square_feet %>:
+    <%= text_field_tag :min_area_square_feet %><br />
+
+    <%= label_tag :min_bedroom_count %>:
+    <%= text_field_tag :min_bedroom_count %><br />
+
+    <%= label_tag :min_bathroom_count %>:
+    <%= text_field_tag :min_bathroom_count %><br />
+
+    <%= label_tag :rent_or_sell %>:
+    <%= text_field_tag :rent_or_sell %><br />
+    <%= submit_tag %>
+  <% end %>

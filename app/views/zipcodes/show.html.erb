@@ -1,10 +1,31 @@
-<div class="row listing_row">
-<% @listings.each_with_index do |listing, index| %>
-	<% if (index % 6 == 0 && index != 0) %>
-		</div>
-		<div class="row listing_row">
-			<%= render partial: "/listings/thumb", locals: {listing: listing, sizing: "col-md-2" }%>
-	<% else %>
-		<%= render partial: "/listings/thumb", locals: {listing: listing, sizing: "col-md-2" }%>
-	<% end %>
+<%= javascript_tag do %>
+  window.listings = <%= raw @listings.to_json %>;
+  window.key = '<%=GOOGLE_MAPS_API_KEY%>';
+
+  window.onload = loadScript();
 <% end %>
+<div class="row">
+	<div class="col-md-5">
+		<div id="main_map" class="map"></div>
+	</div>
+	<div class="col-md-7 row">
+		<div class="row listing_row">
+			<h3 class="centered"> Listings in <%= @listings[0].zipcode.name %> </h3>
+			<% @listings.each_with_index do |listing, index| %>
+				<% if (index % 3 == 0 && index != 0) %>
+					</div>
+					<div class="row listing_row">
+						<div class="col-md-4">
+								<%= render partial: "/listings/thumb", locals: {listing: listing, sizing: "auto"}%>
+						</div>
+
+				<% else %>
+					<div class="col-md-4">
+						<%= render partial: "/listings/thumb", locals: {listing: listing, sizing: "auto"}%>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>
+

@@ -6,7 +6,8 @@ class User < ApplicationRecord
   has_many :listed, class_name: "Listing"
   has_many :followings
   has_many :followed_listings, through: :followings, :source => "listing"
-
+  has_attached_file :photo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
 
   def followed?(listing)
   	print(followed_listings)
