@@ -10,6 +10,7 @@
 	</div>
 	<div class="col-md-7 row">
 		<div class="row listing_row">
+			<%= will_paginate @followed_listings %>
 			<h3 class="centered"> Followed </h3>
 			<% @followed_listings.each_with_index do |listing, index| %>
 				<% if (index % 3 == 0 && index != 0) %>
@@ -25,6 +26,7 @@
 					</div>
 				<% end %>
 			<% end %>
+			<%= will_paginate @followed_listings %>
 		</div>
 	</div>
 </div>

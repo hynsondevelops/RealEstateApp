@@ -29,7 +29,7 @@ class ListingsController < ApplicationController
 	def search
 		@searchResults = Listing.finalSearch(search_params, 1)
 		@listing = Listing.new
-		@listings = @searchResults
+		@listings = @searchResults.paginate(page: params[:page], per_page: 9)
 		@following = Following.new
 		render 'index'
 	end
@@ -37,7 +37,7 @@ class ListingsController < ApplicationController
 	def simpleSearch
 		@searchResults = Listing.finalSearch(search_params, 1)
 		@listing = Listing.new
-		@listings = Listing.all
+		@listings = Listing.all.paginate(page: params[:page], per_page: 9)
 		render 'index'
 
 	end
@@ -49,7 +49,7 @@ class ListingsController < ApplicationController
 	def index
 
 		@listing = Listing.new
-		@listings = Listing.all
+		@listings = Listing.all.paginate(page: params[:page], per_page: 9)
 		@following = Following.new
 
 	end
@@ -92,12 +92,12 @@ class ListingsController < ApplicationController
  
 	def buy
 		@following = Following.new
-		@listings = Listing.where(rent_or_sell: true)
+		@listings = Listing.where(rent_or_sell: true).paginate(page: params[:page], per_page: 9)
 	end
 
 	def rent
 		@following = Following.new
-		@listings = Listing.where(rent_or_sell: false)
+		@listings = Listing.where(rent_or_sell: false).paginate(page: params[:page], per_page: 9)
 		
 	end
 

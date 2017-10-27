@@ -5,7 +5,7 @@ class FollowingsController < ApplicationController
 	end
 
 	def index
-		@followed_listings = current_user.followed_listings
+		@followed_listings = current_user.followed_listings.paginate(page: params[:page], per_page: 9)
 	end
 
 	private

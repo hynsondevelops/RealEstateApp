@@ -21,7 +21,7 @@
 
 @import "bootstrap";
 @import "bootstrap-modal";
-$content-body-height: 1000px;
+$content-body-height: 1300px;
 $navbar-height: 50px;
 
 #popup_background
@@ -357,4 +357,18 @@ html body {
 .lister-photo-container
 {
 	text-align: center;
+}
+
+.pagination {
+	margin-left: 50%;
+  .previous_page { background:#7777ff; color:white }
+  .previous_page.disabled { background: white; color: #777 }
+  .current { background: yellow }
+  .next_page { background: #7777ff; color: white }
+  .next_page.disabled { background: white; color: #777 }
+}
+
+.listing_row
+{
+	margin-right: 50px;
 }

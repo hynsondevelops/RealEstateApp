@@ -42,6 +42,8 @@ gem 'popper_js', '~> 1.11.1'
 gem 'owlcarousel-rails'
 #user ratings
 gem 'ratyrate'
+#pagination
+gem 'will_paginate', '~> 3.0'
 
 
 # Use jquery as the JavaScript library
