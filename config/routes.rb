@@ -20,5 +20,5 @@ Rails.application.routes.draw do
   get '/buy', to: "listings#buy"
   get '/rent', to: "listings#rent"
   get "/home", to: "listings#home"
-
+  post '/contact', to: "users#contact"
 end

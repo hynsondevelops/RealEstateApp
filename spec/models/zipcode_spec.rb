@@ -4,6 +4,10 @@ RSpec.describe Zipcode, :type => :model do
 
 	describe "Validations" do
 		it "is valid with valid attributes" do
+			Zipcode.all.each do |zip|
+				print("Here ")
+				print(zip.number)
+			end
 			expect(subject).to be_valid
 		end
 

@@ -1,77 +1,54 @@
-<%= form_for(@listing, html: {:multipart => true}, :url => { :action => :create }) do |f| %>
-  <%= render partial: '/listings/form_errors', locals: {listing: @listing} %>
-  <%= f.label :address %>:
-  <%= f.text_field :address %><br />
+<div class="devise-centering">
+  <%= form_for(@listing, html: {:multipart => true}, :url => { :action => :create }) do |f| %>
+    <%= render partial: '/listings/form_errors', locals: {listing: @listing} %>
+    <%= f.label :address %>:
+    <%= f.text_field :address %><br />
 
-  <%= f.label :bedroom_count %>:
-  <%= f.text_field :bedroom_count %><br />
+    <%= f.label :bedroom_count %>:
+    <%= f.text_field :bedroom_count %><br />
 
-  <%= f.label :bathroom_count %>:
-  <%= f.text_field :bathroom_count %><br />
+    <%= f.label :bathroom_count %>:
+    <%= f.text_field :bathroom_count %><br />
 
-  <%= f.label :area_square_feet %>:
-  <%= f.text_field :area_square_feet %><br />
+    <%= f.label :area_square_feet %>:
+    <%= f.text_field :area_square_feet %><br />
 
-  <%= f.label :description %>:
-  <%= f.text_field :description %><br />
-  
-  <%= f.label :price %>:
-  <%= f.text_field :price %><br />
+    <%= f.label :description %>:
+    <%= f.text_field :description %><br />
+    
+    <%= f.label :price %>:
+    <%= f.text_field :price %><br />
 
-  <%= f.label :state_abbreviation %>:
-  <%= f.text_field :state_abbreviation %><br />
+    <%= f.label :state_abbreviation %>:
+    <%= f.text_field :state_abbreviation %><br />
 
-  <%= f.label :city_name %>:
-  <%= f.text_field :city_name %><br />
+    <%= f.label :city_name %>:
+    <%= f.text_field :city_name %><br />
 
-  <%= f.label :zipcode_number %>:
-  <%= f.text_field :zipcode_number %><br />
-
-
-  <%= f.radio_button(:rent_or_sell, false) %>
-  <%= f.label(:rent_or_sell, "Rental") %>
-  <%= f.radio_button(:rent_or_sell, true) %>
-  <%= f.label(:rent_or_sell, "Sale") %> 
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-
-  <div class="control-group">
-    <%= f.label :pictures, :class => 'control-label' %>
-    <div class="controls">
-      <!-- The magic is coming ...look at my eyes....shazammmm -->
-      <!-- Use HTML5 multiple attribute to enable multiple selection
-           and pass back to controller all files as an array, ready 
-           for paperclip!!
-           file_field_tag, since images is not a gallery attribute
-       -->
-       <%= file_field_tag "images[]", type: :file, multiple: true %>
-    </div>
-  </div>
+    <%= f.label :zipcode_number %>:
+    <%= f.text_field :zipcode_number %><br />
 
 
-  <%= f.submit %>
-<% end %>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
+    <%= f.radio_button(:rent_or_sell, false) %>
+    <%= f.label(:rent_or_sell, "Rental") %>
+    <%= f.radio_button(:rent_or_sell, true) %>
+    <%= f.label(:rent_or_sell, "Sale") %> 
+    <%= f.hidden_field :user_id, :value => current_user.id %>
 
-<!-- Modal -->
-<div id="myModal" class="modal" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <div class="control-group">
+      <%= f.label :pictures, :class => 'control-label' %>
+      <div class="controls">
+        <!-- The magic is coming ...look at my eyes....shazammmm -->
+        <!-- Use HTML5 multiple attribute to enable multiple selection
+             and pass back to controller all files as an array, ready 
+             for paperclip!!
+             file_field_tag, since images is not a gallery attribute
+         -->
+         <%= file_field_tag "images[]", type: :file, multiple: true %>
       </div>
     </div>
 
-  </div>
+
+    <%= f.submit %>
+  <% end %>
 </div>

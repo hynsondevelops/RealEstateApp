@@ -12,14 +12,20 @@
 	</div>
 </div>
 <div class="contact_form">
-	<h3> Contact Agent </h3>
-	<%= form_tag (action: "search", controller: "/listings") do |f| %>
-	<%= label_tag :name %>
-	<%= text_field_tag :name, current_user.name %><br>
-	<%= label_tag :phone %>
-	<%= text_field_tag :phone_number, current_user.phone_number %><br>
-	<%= label_tag :message %>
-	<%= text_field_tag :message %><br>
-	<%= submit_tag %>
+	<%= form_tag(action: "contact", controller: "/users") do |f| %>
+		<% if (user_signed_in?) %>
+			<h3> Contact Agent </h3>
+			<%= label_tag :name %>
+			<%=text_field_tag :name, current_user.name%><br>
+			<%= label_tag :phone %>
+			<%= text_field_tag :phone_number, current_user.phone_number %><br>
+			<%= hidden_field_tag(:current_user_id, current_user.id) %>
+			<%= label_tag :message %>
+			<%= text_field_tag :message %><br>
+			<%= hidden_field_tag "lister_id", lister.id %>
+			<%= submit_tag %>
+		<% else %>
+			<%= link_to('Login to Contact Agent', new_user_session_path)  %>
+		<% end %>
+	<% end %>
 </div>
-

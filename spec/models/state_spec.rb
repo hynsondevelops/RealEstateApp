@@ -1,9 +1,11 @@
 require 'rails_helper'
+
 RSpec.describe State, :type => :model do
 	subject {build(:state_with_associations)}
 
 	describe "Validations" do
 		it "is valid with valid attributes" do
+			print(subject.zipcodes[0].number)
 			expect(subject).to be_valid
 		end
 

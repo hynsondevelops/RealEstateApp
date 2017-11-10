@@ -8,6 +8,9 @@ FactoryGirl.define do
 
   factory :user do
     email
+    phone_number "444-443-4444"
+    name "John James"
+    company_name "JJ Realtors"
     password "foobar"
     password_confirmation "foobar"
   end
@@ -29,6 +32,7 @@ FactoryGirl.define do
     state
     city
     zipcode
+    complete_address "1600 Pennsylvania Ave NW, DC,"
     association :lister, factory: :user
   end
 
@@ -52,7 +56,7 @@ FactoryGirl.define do
 
   factory :zipcode do
     name "DC"
-    number "20006"
+    sequence(:number) { |n| n }
     state
     factory :zipcode_with_associations, :parent => :zipcode do |zipcode|
       listings { build_list :listing, 1 }

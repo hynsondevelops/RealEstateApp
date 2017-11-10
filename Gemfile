@@ -72,6 +72,8 @@ group :development, :test do
   gem 'rails-controller-testing'
   #for feature tests
   gem 'capybara'
+  #for reseting database after  each spec
+  gem 'database_cleaner'
 
 end
 
