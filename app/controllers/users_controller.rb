@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
 
 	def contact
-		UserMailer.contact_lister(User.find(params[:current_user_id]), User.find(params[:lister_id], params[:message]))
+		cur = User.find(params[:current_user_id])
+		lister = User.find(params[:lister_id])
+		UserMailer.contact_lister(cur, lister, params[:message])
 	end
 
 	def listed

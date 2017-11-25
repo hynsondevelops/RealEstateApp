@@ -3,6 +3,9 @@
   window.key = '<%=GOOGLE_MAPS_API_KEY%>';
 
   window.onload = loadScript();
+  $( document ).ready(function() {
+    $(".owl-carousel").owlCarousel({items: 1});
+  });
 <% end %>
 
 
@@ -10,18 +13,26 @@
 	    <div class="alert alert-success"> flash[:notice] </div>
 <% end %>
 
-
 <div class="row">
   <div class="col-md-3 lister">
     <div class="lister-info">
       <%= render partial: "users/lister", locals: {lister: @listing.lister} %>
     </div>
+    <div class="price">
+      <p> $<%=@listing.price%> </p>
+    </div>
   </div>
   <div class="col-md-5 main-image">
-  	<%= image_tag @listing.pictures[0].image.url(:large), class: "image_gallery_element" %>
-    <p> $<%=@listing.price%> </p>
-    <p><%=@listing.address%>, <%=@listing.city.name%>, <%=@listing.state.abbreviation%> <%=@listing.zipcode.number%> </p> 
-    <p> <%=@listing.bedroom_count%> beds / <%=@listing.bathroom_count%> baths </p>
+    <% if @listing.pictures.size > 0 %>
+      <div class="owl-carousel">
+        <% @listing.pictures.each do |picture| %>
+  	      <div><%= image_tag picture.image.url(:large)%></div>
+        <% end %>
+      </div>
+    <% end %>
+    <h2><%=@listing.address%>, <%=@listing.city.name%>, <%=@listing.state.abbreviation%> <%=@listing.zipcode.number%> </h2> 
+    <h3> <%=@listing.bedroom_count%> beds / <%=@listing.bathroom_count%> baths </h3>
+    <p> <%=@listing.description %> </p>
     <% if current_user != nil%>
       <% if !current_user.followed?(@listing) %>
         <%= form_for(@following, url: {controller: :followings, action: :create}) do |f| %>

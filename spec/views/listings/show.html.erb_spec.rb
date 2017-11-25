@@ -1,11 +1,12 @@
-require "rails_helper"
 
+require "rails_helper"
 describe 'listings/show.html.erb' do
-  before(:all) do
-    @listing = create(:listing)
+  before(:each) do
+    @listing = FactoryGirl.create(:listing)
   end
 
   it 'displays an address ' do
+    print(@listing.lister)
     render
 
     expect(rendered).to include @listing.address

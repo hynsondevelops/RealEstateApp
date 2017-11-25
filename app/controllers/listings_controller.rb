@@ -1,7 +1,11 @@
 class ListingsController < ApplicationController
 
 	def new
-		@listing = Listing.new
+		if (user_signed_in?)
+			@listing = Listing.new
+		else
+			redirect_to '/users/sign_in'
+		end
 	end
 
 	def create

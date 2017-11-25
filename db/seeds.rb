@@ -41,6 +41,10 @@ csv.each do |row|
 	Zipcode.create!(number: row[0], name: row[1], state_id: stateAbbreviationHash[row[3]])
 end
 
+#users
+User.create!(email: "hynsondevelops@gmail.com", name: "Adam Hynson", phone_number: "444-444-4444")
+
+
 # code to time
 finish = Time.now
 
