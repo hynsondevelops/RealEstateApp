@@ -42,7 +42,7 @@ csv.each do |row|
 end
 
 #users
-User.create!(email: "hynsondevelops@gmail.com", name: "Adam Hynson", phone_number: "444-444-4444")
+User.create!(email: "hynsondevelops@gmail.com", name: "Adam Hynson", phone_number: "444-444-4444", password: "password")
 
 
 # code to time

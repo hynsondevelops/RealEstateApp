@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20171024150530) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
     t.string   "rateable_type"
@@ -85,8 +88,8 @@ ActiveRecord::Schema.define(version: 20171024150530) do
     t.string   "dimension"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type"
-    t.index ["rater_id"], name: "index_rates_on_rater_id"
+    t.index ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
+    t.index ["rater_id"], name: "index_rates_on_rater_id", using: :btree
   end
 
   create_table "rating_caches", force: :cascade do |t|
@@ -97,7 +100,7 @@ ActiveRecord::Schema.define(version: 20171024150530) do
     t.string   "dimension"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
+    t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
   end
 
   create_table "states", force: :cascade do |t|
@@ -132,8 +135,8 @@ ActiveRecord::Schema.define(version: 20171024150530) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "zipcodes", force: :cascade do |t|
